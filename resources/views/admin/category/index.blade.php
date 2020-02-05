@@ -36,7 +36,7 @@
                         <td>{{$category->c_name}}</td>
                         <td>{{$category->c_icon}}</td>
                         <td>{{$category->c_title_seo}}</td>
-                        <td>{{$category->c_active}}</td>
+                        <td><a href="" class="{{$category->getStatus($category->c_active)['class']}}">{{$category->getStatus($category->c_active)['name']}}</a></td>
                         <td>
                             <a href="{{route('admin.update.category',$category->id)}}" class="btn btn-success">Sửa</a>
                             <a href="{{route('admin.delete.category',['delete',$category->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
