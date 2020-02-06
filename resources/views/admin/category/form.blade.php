@@ -9,15 +9,15 @@
             @endif
         </div>
     </div>
-    <div class="form-group row">
-        <label for="inputName" class="col-md-2 col-form-label" >Icon</label>
-        <div class="col-md-8">
-            <input type="text" class="form-control" id="inputName" placeholder="fa fa-home" value="{{old('icon',isset($category->c_icon) ? $category->c_icon : '')}}" name="icon">
-            @if($errors->has('icon'))
-                <div class="error-txt">{{ $errors->first('icon') }}</div>
-            @endif
-        </div>
-    </div>
+{{--    <div class="form-group row">--}}
+{{--        <label for="inputName" class="col-md-2 col-form-label" >Icon</label>--}}
+{{--        <div class="col-md-8">--}}
+{{--            <input type="text" class="form-control" id="inputName" placeholder="fa fa-home" value="{{old('icon',isset($category->c_icon) ? $category->c_icon : '')}}" name="icon">--}}
+{{--            @if($errors->has('icon'))--}}
+{{--                <div class="error-txt">{{ $errors->first('icon') }}</div>--}}
+{{--            @endif--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <div class="form-group row">
         <label for="inputName" class="col-md-2 col-form-label" >Tiêu đề danh mục (SEO)</label>
         <div class="col-md-8">

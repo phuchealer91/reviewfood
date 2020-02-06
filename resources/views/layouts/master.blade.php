@@ -43,14 +43,13 @@
         </li>
         <hr class="sidebar-divider">
         <li class="nav-item active">
-            <a class="nav-link" href="{{route('admin.index.category')}}">
+            <a class="nav-link" href="{{route('admin.index.store')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Danh Mục</span></a>
+                <span>Cửa hàng</span></a>
         </li>
-
         <hr class="sidebar-divider">
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{route('admin.index.product')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Sản Phẩm</span></a>
         </li>
@@ -58,21 +57,24 @@
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
+{{--        <div class="sidebar-heading">--}}
+{{--            Interface--}}
+{{--        </div>--}}
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Tin Tức</span>
+                <span>Danh sách danh mục</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
+{{--                    <h6 class="collapse-header">Custom Components:</h6>--}}
+                    <a class="collapse-item" href="{{route('admin.index.category')}}">Category</a>
+                    <a class="collapse-item" href="{{route('admin.index.area')}}">Area</a>
+{{--                    <a class="collapse-item" href="{{route('admin.index.typeCook')}}">Type Cook</a>--}}
+{{--                    <a class="collapse-item" href="{{route('admin.index.typeProduct')}}">Type Product</a>--}}
+{{--                    <a class="collapse-item" href="{{route('admin.index.typeQuality')}}">Type Quality</a>--}}
                 </div>
             </div>
         </li>

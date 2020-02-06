@@ -24,8 +24,8 @@ class AdminRequestCategory extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required | unique:categories,c_name,'.$this->id,
-            'icon'=>'required'
+            'name'=>'required | unique:categories,c_name,'.$this->id
+//            'icon'=>'required'
         ];
     }
     public function messages()
@@ -33,7 +33,7 @@ class AdminRequestCategory extends FormRequest
         return [
             'name.required'=>'Tên danh mục không được để trống.',
             'name.unique' => 'Tên danh mục đã tồn tại.',
-            'icon.required'=>'Tên icon không được để trống.'
+//            'icon.required'=>'Tên icon không được để trống.'
         ];
     }
 }

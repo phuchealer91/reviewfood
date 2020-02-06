@@ -12,10 +12,10 @@ use PhpParser\Node\Stmt\Switch_;
 class AdminCategoryController extends AdminController
 {
     public function index(){
-        $categories = Category::select('id','c_name','c_icon','c_title_seo','c_active')->get();
-        $viewdata = [
-          'categories' => $categories
-        ];
+        $viewdata['categories'] = Category::select('id','c_name','c_desc_seo','c_title_seo','c_active')->get();
+//        $viewdata = [
+//          'categories' => $categories
+//        ];
 //        dd($viewdata);
         return view('admin.category.index',$viewdata);
     }

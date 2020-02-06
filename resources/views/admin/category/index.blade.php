@@ -20,22 +20,24 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Tên danh mục</th>
-                <th>Icon</th>
                 <th>Title Seo</th>
+                <th>Mô tả</th>
                 <th>Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
             </thead>
             <tbody>
+
             @if(isset($categories))
+              <?php $stt = 1;?>
                 @foreach($categories as $category)
                     <tr>
-                        <td>{{$category->id}}</td>
+                        <td>{{$stt++}}</td>
                         <td>{{$category->c_name}}</td>
-                        <td>{{$category->c_icon}}</td>
                         <td>{{$category->c_title_seo}}</td>
+                        <td>{{$category->c_desc_seo}}</td>
                         <td><a href="" class="{{$category->getStatus($category->c_active)['class']}}">{{$category->getStatus($category->c_active)['name']}}</a></td>
                         <td>
                             <a href="{{route('admin.update.category',$category->id)}}" class="btn btn-success">Sửa</a>
