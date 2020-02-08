@@ -31,10 +31,10 @@
             <tbody>
 
             @if(isset($categories))
-              <?php $stt = 1;?>
+<!--              --><?php //$stt = 1;?>
                 @foreach($categories as $category)
                     <tr>
-                        <td>{{$stt++}}</td>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$category->c_name}}</td>
                         <td>{{$category->c_title_seo}}</td>
                         <td>{{$category->c_desc_seo}}</td>

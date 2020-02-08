@@ -20,26 +20,26 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Tên danh mục</th>
-                <th>Icon</th>
-                <th>Title Seo</th>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá sản phẩm</th>
+                <th>Thuộc cửa hàng</th>
                 <th>Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
             </thead>
             <tbody>
-            @if(isset($categories))
-                @foreach($categories as $category)
+            @if(isset($products))
+                @foreach($products as $product)
                     <tr>
-                        <td>{{$category->id}}</td>
-                        <td>{{$category->c_name}}</td>
-                        <td>{{$category->c_icon}}</td>
-                        <td>{{$category->c_title_seo}}</td>
-                        <td><a href="" class="{{$category->getStatus($category->c_active)['class']}}">{{$category->getStatus($category->c_active)['name']}}</a></td>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$product->pro_name}}</td>
+                        <td>{{$product->pro_price}}</td>
+                        <td>{{$product->pro_typeStore_id}}</td>
+                        <td><a href="" class="{{$product->getStatus($product->pro_active)['class']}}">{{$product->getStatus($product->pro_active)['pro_name']}}</a></td>
                         <td>
-                            <a href="{{route('admin.update.product',$category->id)}}" class="btn btn-success">Sửa</a>
-                            <a href="{{route('admin.delete.product',['delete',$category->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
+                            <a href="{{route('admin.update.product',$product->id)}}" class="btn btn-success">Sửa</a>
+                            <a href="{{route('admin.delete.product',['delete',$product->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
                 @endforeach

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TypeProduct extends Model
+class TypeQuality extends Model
 {
-    protected $table = 'type_products';
+    protected $table = 'type_qualitys';
     protected $guarded = [''];
 
     const STATUS_PUBLIC = 1;
@@ -14,17 +14,17 @@ class TypeProduct extends Model
 
     protected $status = [
         1 => [
-            'tp_name' => 'Public',
+            'tq_name' => 'Public',
             'class' => 'btn btn-success'
         ],
         0 => [
-            'tp_name' => 'Private',
+            'tq_name' => 'Private',
             'class' => 'btn btn-danger'
         ]
     ];
     public function getStatus()
     {
-        return array_get($this->status, $this->tp_active, '[N\A]');
+        return array_get($this->status, $this->tq_active, '[N\A]');
         //có thể sử dụng $this
     }
 }

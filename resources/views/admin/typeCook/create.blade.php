@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('api-admin.index')}}">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.index.store')}}">Cửa hàng</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.index.typeCook')}}">Loại ẩm thực</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Thêm mới</li>
             </ol>
         </nav>
@@ -13,7 +13,7 @@
     {{--    <div class="container-fluid">--}}
     <div class="row">
         <div class="col-md-12">
-            @include('admin.store.form')
+            @include('admin.typeCook.form')
         </div>
     </div>
     {{--    </div>--}}

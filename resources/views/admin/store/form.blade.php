@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Số điện thoại</label>
-            <input type="text" class="form-control" id="inputName"  value="0" name="st_phone">
+            <input type="text" class="form-control" id="inputName"  value="" name="st_phone">
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Từ khóa sản phẩm (SEO)</label>
@@ -60,34 +60,6 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="inputState">Loại ẩm thực</label>
-            <select id="inputState" class="form-control" name="st_typeCook_id">
-                <option value="">--Chọn loại ẩm thực--</option>
-                @if(isset($typeCooks))
-                    @foreach($typeCooks as $typeCook)
-                        <option value="{{$typeCook->id}}">{{$typeCook->tc_name}}</option>
-                    @endforeach
-                @endif
-            </select>
-            @if($errors->has('st_typeCook_id'))
-                <div class="error-txt">{{ $errors->first('st_typeCook_id') }}</div>
-            @endif
-        </div>
-        <div class="form-group">
-            <label for="inputState">Loại sản phẩm</label>
-            <select id="inputState" class="form-control" name="st_typeProduct_id">
-                <option value="">--Chọn loại sản phẩm--</option>
-                @if(isset($typeProducts))
-                    @foreach($typeProducts as $typeProduct)
-                        <option value="{{$typeProduct->id}}">{{$typeProduct->tp_name}}</option>
-                    @endforeach
-                @endif
-            </select>
-            @if($errors->has('st_typeProduct_id'))
-                <div class="error-txt">{{ $errors->first('st_typeProduct_id') }}</div>
-            @endif
-        </div>
-        <div class="form-group">
             <label for="inputState">Khu vực</label>
             <select id="inputState" class="form-control" name="st_area_id">
                 <option value="">--Chọn khu vực--</option>
@@ -101,6 +73,36 @@
                 <div class="error-txt">{{ $errors->first('st_area_id') }}</div>
             @endif
         </div>
+        <hr>
+        <div class="form-group">
+            <label for="inputState">Loại sản phẩm</label>
+            <select id="inputState" class="form-control" name="st_typeProduct_id">
+                <option value="">--Chọn loại sản phẩm--</option>
+                @if(isset($typeProducts))
+                    @foreach($typeProducts as $typeProduct)
+                        <option value="{{$typeProduct->id}}">{{$typeProduct->tp_name}}</option>
+                    @endforeach
+                @endif
+            </select>
+            {{--            @if($errors->has('st_typeProduct_id'))--}}
+            {{--                <div class="error-txt">{{ $errors->first('st_typeProduct_id') }}</div>--}}
+            {{--            @endif--}}
+        </div>
+        <hr>
+        <div class="form-group">
+            <label for="inputState">Loại ẩm thực</label>
+            <select id="inputState" class="form-control" name="st_typeCook_id">
+                <option value="">--Chọn loại ẩm thực--</option>
+                @if(isset($typeCooks))
+                    @foreach($typeCooks as $typeCook)
+                        <option value="{{$typeCook->id}}">{{$typeCook->tc_name}}</option>
+                    @endforeach
+                @endif
+            </select>
+{{--            @if($errors->has('st_typeCook_id'))--}}
+{{--                <div class="error-txt">{{ $errors->first('st_typeCook_id') }}</div>--}}
+{{--            @endif--}}
+        </div>
         <div class="form-group">
             <label for="inputState">Hình thức cửa hàng</label>
             <select id="inputState" class="form-control" name="st_typeQuality_id">
@@ -111,9 +113,9 @@
                     @endforeach
                 @endif
             </select>
-            @if($errors->has('st_typeQuality_id'))
-                <div class="error-txt">{{ $errors->first('st_typeQuality_id') }}</div>
-            @endif
+{{--            @if($errors->has('st_typeQuality_id'))--}}
+{{--                <div class="error-txt">{{ $errors->first('st_typeQuality_id') }}</div>--}}
+{{--            @endif--}}
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Ảnh mô tả</label>

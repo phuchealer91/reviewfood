@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('api-admin.index')}}">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="{{route('admin.index.store')}}">Cửa hàng</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.index.typeCook')}}">Loại ẩm thực</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
             </ol>
         </nav>
@@ -12,34 +12,32 @@
     </div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
-            Quản lý cửa hàng
+            Quản lý loại ẩm thực
         </h1>
-        <a href="{{route('admin.create.store')}}" class="btn btn-success pull-right">Thêm mới</a>
+        <a href="{{route('admin.create.typeCook')}}" class="btn btn-success pull-right">Thêm mới</a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Tên danh mục</th>
-                <th>Icon</th>
-                <th>Title Seo</th>
+                <th>Tên loại ẩm thực</th>
+                <th>Mô tả</th>
                 <th>Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
             </thead>
             <tbody>
-            @if(isset($categories))
-                @foreach($categories as $category)
+            @if(isset($typeCooks))
+                @foreach($typeCooks as $typeCook)
                     <tr>
-                        <td>{{$category->id}}</td>
-                        <td>{{$category->c_name}}</td>
-                        <td>{{$category->c_icon}}</td>
-                        <td>{{$category->c_title_seo}}</td>
-                        <td><a href="" class="{{$category->getStatus($category->c_active)['class']}}">{{$category->getStatus($category->c_active)['name']}}</a></td>
+                        <td>{{$typeCook->id}}</td>
+                        <td>{{$typeCook->tc_name}}</td>
+                        <td>{{$typeCook->tc_desc}}</td>
+                        <td><a href="" class="{{$typeCook->getStatus($typeCook->tc_active)['class']}}">{{$typeCook->getStatus($typeCook->tc_active)['tc_name']}}</a></td>
                         <td>
-                            <a href="{{route('admin.update.store',$category->id)}}" class="btn btn-success">Sửa</a>
-                            <a href="{{route('admin.delete.store',['delete',$category->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
+                            <a href="{{route('admin.update.typeCook',$typeCook->id)}}" class="btn btn-success">Sửa</a>
+                            <a href="{{route('admin.delete.typeCook',['delete',$typeCook->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
                 @endforeach

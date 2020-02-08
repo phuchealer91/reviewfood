@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateStPhoneTableStores extends Migration
+class UpdateTypeCookProductQualityNullable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,11 @@ class UpdateStPhoneTableStores extends Migration
     public function up()
     {
         Schema::table('stores', function (Blueprint $table) {
-            $table->integer('st_phone')->nullable()->default(0);
+            $table->integer('st_typeQuality_id')->nullable()->index()->default(0)->change();
+            $table->integer('st_typeCook_id')->nullable()->index()->default(0)->change();
+            $table->integer('st_typeProduct_id')->nullable()->index()->default(0)->change();
         });
+
     }
 
     /**
@@ -26,7 +29,9 @@ class UpdateStPhoneTableStores extends Migration
     public function down()
     {
         Schema::table('stores', function (Blueprint $table) {
-            $table->dropColumn('st_phone');
+            $table->dropColumn('st_typeQuality_id');
+            $table->dropColumn('st_typeCook_id');
+            $table->dropColumn('st_typeProduct_id');
         });
     }
 }

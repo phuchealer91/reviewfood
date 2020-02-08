@@ -22,8 +22,8 @@
             <tr>
                 <th>ID</th>
                 <th>Tên khu vực</th>
-                <th>Trạng thái</th>
                 <th>Mô tả</th>
+                <th>Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
             </thead>

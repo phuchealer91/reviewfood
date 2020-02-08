@@ -20,26 +20,28 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Tên danh mục</th>
-                <th>Icon</th>
-                <th>Title Seo</th>
+                <th>STT</th>
+                <th>Tên cửa hàng</th>
+                <th>Địa chỉ</th>
+                <th>Thời gian hoạt động</th>
+                <th>Giá trung bình</th>
                 <th>Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
             </thead>
             <tbody>
-            @if(isset($categories))
-                @foreach($categories as $category)
+            @if(isset($stores))
+                @foreach($stores as $store)
                     <tr>
-                        <td>{{$category->id}}</td>
-                        <td>{{$category->c_name}}</td>
-                        <td>{{$category->c_icon}}</td>
-                        <td>{{$category->c_title_seo}}</td>
-                        <td><a href="" class="{{$category->getStatus($category->c_active)['class']}}">{{$category->getStatus($category->c_active)['name']}}</a></td>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$store->st_name}}</td>
+                        <td>{{$store->st_address}}</td>
+                        <td>{{$store->st_timeOpen}}</td>
+                        <td>{{$store->st_price}}</td>
+                        <td><a href="" class="{{$store->getStatus($store->st_active)['class']}}">{{$store->getStatus($store->st_active)['st_name']}}</a></td>
                         <td>
-                            <a href="{{route('admin.update.store',$category->id)}}" class="btn btn-success">Sửa</a>
-                            <a href="{{route('admin.delete.store',['delete',$category->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
+                            <a href="{{route('admin.update.store',$store->id)}}" class="btn btn-success">Sửa</a>
+                            <a href="{{route('admin.delete.store',['delete',$store->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
                 @endforeach
