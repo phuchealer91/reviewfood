@@ -15,11 +15,11 @@ class Category extends Model
     protected $status = [
         1 => [
             'name' => 'Public',
-            'class' => 'btn btn-success'
+            'class' => 'badge badge-success'
         ],
         0 => [
             'name' => 'Private',
-            'class' => 'btn btn-danger'
+            'class' => 'badge badge-danger'
         ]
     ];
     public function getStatus(){

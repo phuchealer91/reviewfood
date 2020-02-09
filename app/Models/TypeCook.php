@@ -15,11 +15,11 @@ class TypeCook extends Model
     protected $status = [
         1 => [
             'tc_name' => 'Public',
-            'class' => 'btn btn-success'
+            'class' => 'badge badge-success'
         ],
         0 => [
             'tc_name' => 'Private',
-            'class' => 'btn btn-danger'
+            'class' => 'badge badge-danger'
         ]
     ];
     public function getStatus(){

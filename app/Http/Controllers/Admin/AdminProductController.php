@@ -11,14 +11,21 @@ use App\Models\Store;
 use App\Models\TypeCook;
 use App\Models\TypeProduct;
 use Illuminate\Http\Request;
-//use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
-class AdminProductController extends AdminController
+class AdminProductController extends Controller
 {
-    public function index(){
-            $products = Product::paginate(10);
+    public function index(Request $request){
+            $products = Product::with('relation_store:id,st_name');
+            if(isset($request->search_name)) $products->where('pro_name','like','%'.$request->search_name.'%');
+            if(isset($request->search_store)) $products->where('pro_typeStore_id',$request->search_store);
+
+        $products = $products->orderByDesc('id')->paginate(10);
+
+            $stores = $this->getStore();
             $viewdata = [
-              'products' => $products
+              'products' => $products,
+                'stores'=>$stores
             ];
         return view('admin.product.index',$viewdata);
     }
@@ -39,8 +46,13 @@ class AdminProductController extends AdminController
         return redirect()->back();
     }
     public function edit($id){
+        $stores = $this->getStore();
         $product = Product::find($id);
-        return view('admin.product.update',compact('product'));
+        $viewdata = [
+          'stores' => $stores,
+          'product'=> $product
+        ];
+        return view('admin.product.update',$viewdata);
     }
     public function update(RequestProduct $requestProduct,$id){
         $this->insertOrUpdate($requestProduct,$id);
@@ -66,6 +78,14 @@ class AdminProductController extends AdminController
             Switch($action){
                 case 'delete':
                     $product->delete();
+                    break;
+                case 'action':
+                    $product->pro_active =  $product->pro_active ? 0 : 1;
+                    $product->save();
+                    break;
+                case 'hot':
+                    $product->pro_hot = $product->pro_hot ? 0 : 1;
+                    $product->save();
                     break;
             }
         }

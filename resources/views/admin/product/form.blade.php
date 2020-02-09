@@ -33,16 +33,16 @@
         </div>
         <div class="form-group">
             <label for="inputState" class="col-form-label">Sản phẩm thuộc cửa hàng</label>
-            <select id="js-select2" class="form-control" name="pro_typeStore_id">
+            <select  class="form-control js-select2" name="pro_typeStore_id">
                 <option value="">-- Chọn cửa hàng --</option>
                 @if(isset($stores))
                     @foreach($stores as $store)
-                        <option value="{{$store->id}}">{{$store->st_name}}</option>
+                        <option value="{{$store->id}}" {{old('pro_typeStore_id', isset($product->pro_typeStore_id) ? $product->pro_typeStore_id : '') == $store->id ? 'selected' : ''}}>{{$store->st_name}}</option>
                         @endforeach
                 @endif
             </select>
             @if($errors->has('pro_typeStore_id'))
-                <div class="error-txt">{{ $errors->first('pro_typeStore_id') }}</div>
+                <div class="error-txt">{{ $errors->first('pro_typeStore_id')}}</div>
             @endif
         </div>
         <div class="form-group">

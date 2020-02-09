@@ -34,38 +34,34 @@
             </div>
             <div class="sidebar-brand-text mx-3">Admin <sup>2</sup></div>
         </a>
-
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item {{\Request::route()->getName() == 'api-admin.index' ? 'active' : ''}}">
             <a class="nav-link" href="{{route('api-admin.index')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Trang Tổng Quan</span></a>
         </li>
         <hr class="sidebar-divider">
-        <li class="nav-item active">
+        <li class="nav-item {{\Request::route()->getName() == 'admin.index.store' ? 'active' : ''}}">
             <a class="nav-link" href="{{route('admin.index.store')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Cửa hàng</span></a>
         </li>
         <hr class="sidebar-divider">
-        <li class="nav-item active">
+        <li class="nav-item {{\Request::route()->getName() == 'admin.index.product' ? 'active' : ''}}">
             <a class="nav-link" href="{{route('admin.index.product')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Sản Phẩm</span></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider">
-
         <!-- Heading -->
 {{--        <div class="sidebar-heading">--}}
 {{--            Interface--}}
 {{--        </div>--}}
-
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item {{(\Request::route()->getName() == 'admin.index.category') ? 'active' : (\Request::route()->getName() == 'admin.index.area') ? 'active' : (\Request::route()->getName() == 'admin.index.typeCook')  ? 'active' : (\Request::route()->getName() == 'admin.index.typeProduct') ? 'active' : (\Request::route()->getName() == 'admin.index.typeQuality') ? 'active' : '' }} ">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Danh sách danh mục</span>
@@ -73,15 +69,14 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 {{--                    <h6 class="collapse-header">Custom Components:</h6>--}}
-                    <a class="collapse-item" href="{{route('admin.index.category')}}">Category</a>
-                    <a class="collapse-item" href="{{route('admin.index.area')}}">Area</a>
-                    <a class="collapse-item" href="{{route('admin.index.typeCook')}}">Type Cook</a>
-                    <a class="collapse-item" href="{{route('admin.index.typeProduct')}}">Type Product</a>
-                    <a class="collapse-item" href="{{route('admin.index.typeQuality')}}">Type Quality</a>
+                    <a class="collapse-item {{\Request::route()->getName() == 'admin.index.category' ? 'active' : ''}}" href="{{route('admin.index.category')}}">Category</a>
+                    <a class="collapse-item {{\Request::route()->getName() == 'admin.index.area' ? 'active' : ''}}" href="{{route('admin.index.area')}}">Area</a>
+                    <a class="collapse-item {{\Request::route()->getName() == 'admin.index.typeCook' ? 'active' : ''}}" href="{{route('admin.index.typeCook')}}">Type Cook</a>
+                    <a class="collapse-item {{\Request::route()->getName() == 'admin.index.typeProduct' ? 'active' : ''}}" href="{{route('admin.index.typeProduct')}}">Type Product</a>
+                    <a class="collapse-item {{\Request::route()->getName() == 'admin.index.typeQuality' ? 'active' : ''}}" href="{{route('admin.index.typeQuality')}}">Type Quality</a>
                 </div>
             </div>
         </li>
-
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -98,15 +93,12 @@
                 </div>
             </div>
         </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider">
-
         <!-- Heading -->
         <div class="sidebar-heading">
             Addons
         </div>
-
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
@@ -126,7 +118,6 @@
                 </div>
             </div>
         </li>
-
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="charts.html">

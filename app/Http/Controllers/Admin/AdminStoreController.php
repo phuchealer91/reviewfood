@@ -17,7 +17,7 @@ use App\Http\Controllers\Controller;
 class AdminStoreController extends AdminController
 {
     public function index(){
-        $stores = Store::paginate(10);
+        $stores = Store::with('relation_area:id,ar_name','relation_category:id,c_name')->paginate(10);
         $viewdata = [
             'stores' => $stores
         ];
@@ -45,8 +45,22 @@ class AdminStoreController extends AdminController
         return redirect()->back();
     }
     public function edit($id){
-        $store = Store::find($id);
-        return view('admin.store.update',compact('store'));
+        $categories = $this->getCategories();
+        $areas = $this->getArea();
+        $typeCooks = $this->getTypeCook();
+        $typeProducts = $this->getTypeProduct();
+        $typeQualitys = $this->getTypeQuality();
+        $stores = Store::find($id);
+        $viewdata = [
+            'areas' => $areas,
+            'typeCooks' => $typeCooks,
+            'typeProducts' => $typeProducts,
+            'categories' => $categories,
+            'typeQualitys'=>$typeQualitys,
+            'stores' => $stores
+        ];
+
+        return view('admin.store.update',$viewdata);
     }
     public function update(RequestStore $requestStore,$id){
         $this->insertOrUpdate($requestStore,$id);

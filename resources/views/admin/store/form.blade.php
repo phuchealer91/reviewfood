@@ -4,68 +4,68 @@
     <div class="col-sm-12 col-md-8">
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Tên cửa hàng</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Tên cửa hàng..." value="{{old('st_name',isset($category->st_name) ? $category->st_name : '')}}" name="st_name">
+                <input type="text" class="form-control" id="inputName" placeholder="Tên cửa hàng..." value="{{old('st_name',isset($stores ->st_name) ? $stores ->st_name : '')}}" name="st_name">
                 @if($errors->has('st_name'))
                     <div class="error-txt">{{ $errors->first('st_name') }}</div>
                 @endif
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Địa chỉ</label>
-                <textarea name="st_address" id=""  class="form-control" cols="30" rows="2" placeholder="Mô tả chi tiết địa chỉ" ></textarea>
+            <textarea type="text" name="st_address" id=""  cols="30" rows="2" class="form-control"  placeholder="Mô tả chi tiết địa chỉ">{{old('st_address',isset($stores ->st_address) ? $stores ->st_address : '')}}</textarea>
             @if($errors->has('st_address'))
                 <div class="error-txt">{{ $errors->first('st_address') }}</div>
             @endif
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Giờ hoạt động</label>
-            <input type="text" class="form-control" id="inputName" placeholder="07:00 - 23:30" value="{{old('st_timeOpen',isset($category->st_timeOpen) ? $category->st_timeOpen : '')}}" name="st_timeOpen">
+            <input type="text" class="form-control" id="inputName" placeholder="07:00 - 23:30" value="{{old('st_timeOpen',isset($stores ->st_timeOpen) ? $stores ->st_timeOpen : '')}}" name="st_timeOpen">
             @if($errors->has('st_timeOpen'))
                 <div class="error-txt">{{ $errors->first('st_timeOpen') }}</div>
             @endif
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Giá trung bình của các sản phẩm</label>
-            <input type="text" class="form-control" id="inputName" placeholder="18.000 - 50.000" value="{{old('st_price',isset($category->st_price) ? $category->st_price : '')}}" name="st_price">
+            <input type="text" class="form-control" id="inputName" placeholder="18.000 - 50.000" value="{{old('st_price',isset($stores ->st_price) ? $stores ->st_price : '')}}" name="st_price">
             @if($errors->has('st_price'))
                 <div class="error-txt">{{ $errors->first('st_price') }}</div>
             @endif
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Số điện thoại</label>
-            <input type="text" class="form-control" id="inputName"  value="" name="st_phone">
+            <input type="text" class="form-control" id="inputName"  name="st_phone" value="{{old('st_phone',isset($stores ->st_phone) ? $stores ->st_phone : '')}}">
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Từ khóa sản phẩm (SEO)</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Tên tiêu đề..." value="{{old('st_keyword_seo',isset($category->st_keyword_seo) ? $category->st_keyword_seo : '')}}" name="st_keyword_seo">
+            <input type="text" class="form-control" id="inputName" placeholder="Tên tiêu đề..." value="{{old('st_keyword_seo',isset($stores ->st_keyword_seo) ? $stores ->st_keyword_seo : '')}}" name="st_keyword_seo">
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Miêu tả ngắn gọn</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Miêu tả ngắn gọn..." value="{{old('st_desc_seo',isset($category->st_desc_seo) ? $category->st_desc_seo : '')}}" name="st_desc_seo">
+            <input type="text" class="form-control" id="inputName" placeholder="Miêu tả ngắn gọn..." value="{{old('st_desc_seo',isset($stores ->st_desc_seo) ? $stores ->st_desc_seo : '')}}" name="st_desc_seo">
         </div>
 
     </div>
     <div class="col-sm-12 col-md-4">
         <div class="form-group">
             <label for="inputState">Thể loại sản phẩm</label>
-            <select id="inputState" class="form-control" name="st_category_id">
+            <select class="form-control js-select2" name="st_category_id">
                 <option value="">--Chọn thể loại sản phẩm--</option>
                 @if(isset($categories))
                     @foreach($categories as $category)
-                        <option value="{{$category->id}}">{{$category->c_name}}</option>
+                        <option value="{{$category->id}}" {{old('st_category_id', isset($stores->st_category_id) ? $stores->st_category_id : '') == $category->id ? 'selected' : ''}}>{{$category->c_name}}</option>
                         @endforeach
                 @endif
             </select>
             @if($errors->has('st_category_id'))
-                <div class="error-txt">{{ $errors->first('st_category_id') }}</div>
+                <div class="error-txt">{{$errors->first('st_category_id')}}</div>
             @endif
         </div>
         <div class="form-group">
             <label for="inputState">Khu vực</label>
-            <select id="inputState" class="form-control" name="st_area_id">
+            <select class="form-control js-select2" name="st_area_id">
                 <option value="">--Chọn khu vực--</option>
                 @if(isset($areas))
                     @foreach($areas as $area)
-                        <option value="{{$area->id}}">{{$area->ar_name}}</option>
+                        <option value="{{$area->id}}" {{old('st_area_id', isset($stores->st_area_id) ? $stores->st_area_id : '') == $area->id ? 'selected' : ''}}>{{$area->ar_name}}</option>
                     @endforeach
                 @endif
             </select>
@@ -76,11 +76,11 @@
         <hr>
         <div class="form-group">
             <label for="inputState">Loại sản phẩm</label>
-            <select id="inputState" class="form-control" name="st_typeProduct_id">
+            <select class="form-control js-select2" name="st_typeProduct_id">
                 <option value="">--Chọn loại sản phẩm--</option>
                 @if(isset($typeProducts))
                     @foreach($typeProducts as $typeProduct)
-                        <option value="{{$typeProduct->id}}">{{$typeProduct->tp_name}}</option>
+                        <option value="{{$typeProduct->id}}" {{old('st_typeProduct_id', isset($stores->st_typeProduct_id) ? $stores->st_typeProduct_id : '') == $typeProduct->id ? 'selected' : ''}}>{{$typeProduct->tp_name}}</option>
                     @endforeach
                 @endif
             </select>
@@ -91,11 +91,11 @@
         <hr>
         <div class="form-group">
             <label for="inputState">Loại ẩm thực</label>
-            <select id="inputState" class="form-control" name="st_typeCook_id">
+            <select class="form-control js-select2" name="st_typeCook_id">
                 <option value="">--Chọn loại ẩm thực--</option>
                 @if(isset($typeCooks))
                     @foreach($typeCooks as $typeCook)
-                        <option value="{{$typeCook->id}}">{{$typeCook->tc_name}}</option>
+                        <option value="{{$typeCook->id}}" {{old('st_typeCook_id', isset($stores->st_typeCook_id) ? $stores->st_typeCook_id : '') == $typeCook->id ? 'selected' : ''}}>{{$typeCook->tc_name}}</option>
                     @endforeach
                 @endif
             </select>
@@ -105,11 +105,11 @@
         </div>
         <div class="form-group">
             <label for="inputState">Hình thức cửa hàng</label>
-            <select id="inputState" class="form-control" name="st_typeQuality_id">
+            <select class="form-control js-select2" name="st_typeQuality_id">
                 <option value="">--Chọn hình thức--</option>
                 @if(isset($typeQualitys))
                     @foreach($typeQualitys as $typeQuality)
-                        <option value="{{$typeQuality->id}}">{{$typeQuality->tq_name}}</option>
+                        <option value="{{$typeQuality->id}}" {{old('st_typeQuality_id', isset($stores->st_typeQuality_id) ? $stores->st_typeQuality_id : '') == $typeQuality->id ? 'selected' : ''}}>{{$typeQuality->tq_name}}</option>
                     @endforeach
                 @endif
             </select>

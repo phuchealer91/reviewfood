@@ -15,11 +15,11 @@ class TypeQuality extends Model
     protected $status = [
         1 => [
             'tq_name' => 'Public',
-            'class' => 'btn btn-success'
+            'class' => 'badge badge-success'
         ],
         0 => [
             'tq_name' => 'Private',
-            'class' => 'btn btn-danger'
+            'class' => 'badge badge-danger'
         ]
     ];
     public function getStatus()
