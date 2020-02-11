@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['namespace'=>'Frontend'],function (){
+   Route::get('/','HomeController@index')->name('get.home');
 });
+
 include 'route_admin.php';
+
+
