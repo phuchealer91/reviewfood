@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2020 at 02:19 PM
+-- Generation Time: Feb 11, 2020 at 02:27 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -201,8 +201,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `pro_name`, `pro_slug`, `pro_price`, `pro_sale`, `pro_active`, `pro_view`, `pro_hot`, `pro_avatar`, `pro_typeStore_id`, `pro_desc_seo`, `pro_keyword_seo`, `created_at`, `updated_at`, `pro_count`) VALUES
-(1, 'Trà đào', 'tra-dao', 15000, 0, 1, 0, 0, NULL, 1, 'Trà đào', 'tra dao', '2020-02-07 11:35:59', '2020-02-08 20:54:32', 0),
-(2, 'Cafe black', 'cafe-black', 15000, 0, 1, 0, 0, NULL, 2, 'Cafe black', NULL, '2020-02-08 23:50:55', '2020-02-08 23:55:29', 0);
+(1, 'Trà đào', 'tra-dao', 15000, 0, 0, 0, 0, NULL, 1, 'Trà đào', 'tra dao', '2020-02-07 11:35:59', '2020-02-09 10:21:38', 0),
+(2, 'Cafe black', 'cafe-black', 15000, 0, 0, 0, 1, NULL, 2, 'Cafe black', NULL, '2020-02-08 23:50:55', '2020-02-09 10:21:33', 0),
+(3, 'Trà xanh', 'tra-xanh', 18000, 0, 0, 0, 1, '2020-02-11__pl00.png', 11, 'Trà xanh', NULL, '2020-02-09 09:43:21', '2020-02-11 06:01:14', 0),
+(4, 'Trà É', 'tra-e', 10500, 0, 1, 0, 0, '2020-02-11__.jpg', 11, 'Trà É', NULL, '2020-02-09 09:43:58', '2020-02-11 06:01:32', 0);
 
 -- --------------------------------------------------------
 
@@ -493,7 +495,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `stores`
