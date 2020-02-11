@@ -17,6 +17,7 @@ class CreateAreasTable extends Migration
             $table->increments('id');
             $table->string('ar_name')->nullable();
             $table->string('ar_slug')->index();
+            $table->tinyInteger('ar_active')->default(1)->index();
             $table->string('ar_desc')->nullable();
             $table->timestamps();
         });

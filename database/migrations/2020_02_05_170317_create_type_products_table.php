@@ -17,6 +17,7 @@ class CreateTypeProductsTable extends Migration
             $table->increments('id');
             $table->string('tp_name')->nullable();
             $table->string('tp_slug')->index();
+            $table->tinyInteger('tp_active')->default(1)->index();
             $table->string('tp_desc')->nullable();
             $table->timestamps();
         });

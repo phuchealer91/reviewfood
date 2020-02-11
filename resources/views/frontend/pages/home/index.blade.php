@@ -29,20 +29,25 @@
                                 <span> Giao tận nơi</span>
                             </div>
                         </div>
-                        <a class="nav-item nav-link active" id="nav-deal-tab" data-toggle="tab" href="#nav-deal"
-                           role="tab" aria-controls="nav-deal" aria-selected="true">Deal hôm nay</a>
-                        <a class="nav-item nav-link" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab"
-                           aria-controls="nav-all" aria-selected="false">Tất cả</a>
-                        <a class="nav-item nav-link" id="nav-food-tab" data-toggle="tab" href="#nav-food" role="tab"
-                           aria-controls="nav-food" aria-selected="false">Food</a>
-                        <a class="nav-item nav-link" id="nav-drink-tab" data-toggle="tab" href="#nav-drink" role="tab"
-                           aria-controls="nav-drink" aria-selected="false">Drink</a>
-                        <a class="nav-item nav-link" id="nav-vege-tab" data-toggle="tab" href="#nav-vege" role="tab"
-                           aria-controls="nav-vege" aria-selected="false">Vege</a>
-                        <a class="nav-item nav-link" id="nav-cakes-tab" data-toggle="tab" href="#nav-cakes" role="tab"
-                           aria-controls="nav-cakes" aria-selected="false">Cakes</a>
-                        <a class="nav-item nav-link" id="nav-dessert-tab" data-toggle="tab" href="#nav-dessert"
-                           role="tab" aria-controls="nav-dessert" aria-selected="false">Dessert</a>
+                        @if(isset($typeProducts))
+                            @foreach($typeProducts as $typeProduct)
+                                <a class="nav-item nav-link" id="nav-deal-tab" data-toggle="tab" href="#nav-deal"
+                                   role="tab" aria-controls="nav-deal" aria-selected="true">{{$typeProduct->tp_name}}</a>
+                            @endforeach
+                        @endif
+
+{{--                        <a class="nav-item nav-link" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab"--}}
+{{--                           aria-controls="nav-all" aria-selected="false">Tất cả</a>--}}
+{{--                        <a class="nav-item nav-link" id="nav-food-tab" data-toggle="tab" href="#nav-food" role="tab"--}}
+{{--                           aria-controls="nav-food" aria-selected="false">Food</a>--}}
+{{--                        <a class="nav-item nav-link" id="nav-drink-tab" data-toggle="tab" href="#nav-drink" role="tab"--}}
+{{--                           aria-controls="nav-drink" aria-selected="false">Drink</a>--}}
+{{--                        <a class="nav-item nav-link" id="nav-vege-tab" data-toggle="tab" href="#nav-vege" role="tab"--}}
+{{--                           aria-controls="nav-vege" aria-selected="false">Vege</a>--}}
+{{--                        <a class="nav-item nav-link" id="nav-cakes-tab" data-toggle="tab" href="#nav-cakes" role="tab"--}}
+{{--                           aria-controls="nav-cakes" aria-selected="false">Cakes</a>--}}
+{{--                        <a class="nav-item nav-link" id="nav-dessert-tab" data-toggle="tab" href="#nav-dessert"--}}
+{{--                           role="tab" aria-controls="nav-dessert" aria-selected="false">Dessert</a>--}}
                     </div>
                 </nav>
             </div>
@@ -91,11 +96,11 @@
                         <div class="nav-tabs-category">
                             <div class="form-group">
                                 <select class="form-control">
-                                    <option>Tìm danh mục</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    @if(isset($typeCooks))
+                                        @foreach($typeCooks as $typeCook)
+                                            <option>{{$typeCook->tc_name}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
@@ -188,20 +193,20 @@
                                                     <div class="nav-tabs-discover">
                                                         <div class="form-group">
                                                             <select class="form-control">
-                                                                <option>Tìm danh mục</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
+                                                                @if(isset($typeQualitys))
+                                                                    @foreach($typeQualitys as $typeQuality)
+                                                                        <option>{{$typeQuality->tq_name}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
                                                             <select class="form-control">
-                                                                <option>Nổi bật</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
+                                                                @if(isset($typeCooks))
+                                                                    @foreach($typeCooks as $typeCook)
+                                                                        <option>{{$typeCook->tc_name}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                         <div class="form-group">

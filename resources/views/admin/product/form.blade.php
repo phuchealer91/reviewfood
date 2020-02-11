@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
     <div class="col-sm-12 col-md-8">

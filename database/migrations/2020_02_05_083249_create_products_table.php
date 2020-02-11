@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->integer('pro_view')->default(0);
             $table->tinyInteger('pro_hot')->default(0);
             $table->string('pro_avatar')->nullable();
+            $table->integer('pro_count')->default(0)->index();
             $table->integer('pro_typeStore_id')->index()->default(0);
             $table->string('pro_desc_seo')->nullable();
             $table->string('pro_keyword_seo')->nullable();

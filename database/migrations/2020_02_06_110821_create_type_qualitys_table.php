@@ -17,6 +17,7 @@ class CreateTypeQualitysTable extends Migration
             $table->increments('id');
             $table->string('tq_name')->nullable();
             $table->string('tq_slug')->index();
+            $table->tinyInteger('tq_active')->default(1)->index();
             $table->string('tq_desc')->nullable();
             $table->timestamps();
         });

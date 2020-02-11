@@ -37,11 +37,13 @@
                             </select>
                         </li>
                         <li class="category-list-main-food">
-                            <select class="js-select2" style="width: 100px; padding: 18px 12px;">
-                                <option>TPHCM</option>
-                                <option>Select B</option>
-                                <option>Select C</option>
-                                <option>Select D</option>
+                            <select class="js-select2" style="width: 100px">
+                                <option value="">--Loại sản phẩm--</option>
+                                @if(isset($categories))
+                                    @foreach($categories as $category)
+                                        <option>{{$category->c_name}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </li>
                         <li class="category-list-main-search">

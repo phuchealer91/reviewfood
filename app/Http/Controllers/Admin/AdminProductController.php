@@ -69,6 +69,12 @@ class AdminProductController extends Controller
             $product->pro_avatar = $requestProduct->pro_avatar;
             $product->pro_desc_seo = $requestProduct->pro_desc_seo ? $requestProduct->pro_desc_seo : $requestProduct->pro_name;
             $product->pro_keyword_seo = $requestProduct->pro_keyword_seo;
+            if($requestProduct->hasFile('pro_avatar')){
+                $file = upload_image('pro_avatar');
+                if(isset($file['name'])){
+                    $product->pro_avatar = $file['name'];
+                }
+            }
 
             $product->save();
     }
@@ -80,11 +86,11 @@ class AdminProductController extends Controller
                     $product->delete();
                     break;
                 case 'action':
-                    $product->pro_active =  $product->pro_active ? 0 : 1;
+                    $product->pro_active =  ! $product->pro_active;
                     $product->save();
                     break;
                 case 'hot':
-                    $product->pro_hot = $product->pro_hot ? 0 : 1;
+                    $product->pro_hot = ! $product->pro_hot;
                     $product->save();
                     break;
             }

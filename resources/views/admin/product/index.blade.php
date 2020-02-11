@@ -44,6 +44,7 @@
                 <th>Tên sản phẩm</th>
                 <th>Thuộc cửa hàng</th>
                 <th>Trạng thái</th>
+                <th>Hình ảnh</th>
                 <th>Nổi bật</th>
                 <th>Thao tác</th>
             </tr>
@@ -62,6 +63,7 @@
                         </td>
                         <td>{{isset($product->relation_store->st_name) ? $product->relation_store->st_name : '[N\A]'}}</td>
                         <td><a href="{{route('admin.delete.product',['action',$product->id])}}" class="{{$product->getStatus($product->pro_active)['class']}}">{{$product->getStatus($product->pro_active)['pro_name']}}</a></td>
+                        <td><img src="{{pare_url_file($product->pro_avatar)}}" alt="" width="80px" height="80px"></td>
                         <td ><a href="{{route('admin.delete.product',['hot',$product->id])}}" class="{{$product->getHot($product->pro_hot)['class']}}">{{$product->getHot($product->pro_hot)['name']}}</a></td>
                         <td >
                             <a href="{{route('admin.update.product',$product->id)}}" class="btn btn-success mr-1">Sửa</a>

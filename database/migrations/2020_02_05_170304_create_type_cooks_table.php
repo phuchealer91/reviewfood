@@ -17,6 +17,7 @@ class CreateTypeCooksTable extends Migration
             $table->increments('id');
             $table->string('tc_name')->nullable();
             $table->string('tc_slug')->index();
+            $table->tinyInteger('tc_active')->default(1)->index();
             $table->string('tc_desc')->nullable();
             $table->timestamps();
         });
