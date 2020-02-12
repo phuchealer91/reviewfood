@@ -11,8 +11,8 @@ class Product extends Model
     const STATUS_PUBLIC = 1;
     const STATUS_PRIVATE = 0;
 
-    const STATUS_ON = 1;
-    const STATUS_OFF = 0;
+    const HOT_ON = 1;
+    const HOT_OFF = 0;
     protected $status = [
         1 => [
             'pro_name' => 'Public',

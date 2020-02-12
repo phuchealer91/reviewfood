@@ -461,7 +461,7 @@ body {
       display: block;
       max-width: 250px;
       width: 100%;
-      height: 290px;
+      height: 320px;
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -480,8 +480,9 @@ body {
         .product-site-main-bottom .tab-content-item-txt a {
           text-decoration: none; }
         .product-site-main-bottom .tab-content-item-txt__title {
-          font-size: 20px;
-          color: black;
+          font-size: 15px;
+          color: #333;
+            font-weight:bold;
           margin-bottom: 3px; }
         .product-site-main-bottom .tab-content-item-txt__detail {
           font-size: 13px;

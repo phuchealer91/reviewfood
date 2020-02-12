@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
     <div class="col-sm-12 col-md-8">
@@ -119,7 +119,7 @@
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Ảnh mô tả</label>
-            <input type="file" class="form-control" id="inputName" name="st_avatar">
+            <input type="file" class="form-control"  name="st_avatar" value="{{old('st_avatar',isset($stores ->st_avatar) ? $stores ->st_avatar : '')}}">
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Trạng thái</label>

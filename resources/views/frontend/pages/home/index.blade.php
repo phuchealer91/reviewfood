@@ -287,11 +287,11 @@
                                                     <div class="nav-tabs-discover">
                                                         <div class="form-group">
                                                             <select class="form-control">
-                                                                <option>Tìm danh mục</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
+                                                                @if(isset($typeCooks))
+                                                                    @foreach($typeCooks as $typeCook)
+                                                                        <option>{{$typeCook->tc_name}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
@@ -316,14 +316,38 @@
                                                 </div>
                                             </nav>
                                         </div>
+                                        @if(isset($storeHot))
                                         <div class="container product-site-main-bottom">
                                             <div class="tab-content" id="nav-tabContent">
                                                 <div class="tab-pane fade show active" id="nav-itemNew" role="tabpanel"
                                                      aria-labelledby="nav-itemNew-tab">
                                                     <div class="row no-gutters">
+                                                        @foreach($storeHot as $hot)
                                                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                                                            @include('frontend.components.store_item')
+                                                            <div class="tab-content-item">
+                                                                <div class="tab-content-item-avt">
+                                                                    <a href=""><img src="{{pare_url_file($hot->st_avatar)}}" alt=""></a>
+                                                                </div>
+                                                                <div class="tab-content-item-txt">
+                                                                    <a href="">
+                                                                        <h3 class="tab-content-item-txt__title">{{$hot->st_name}}</h3>
+                                                                        <span
+                                                                            class="tab-content-item-txt__detail">{{$hot->st_address}}</span>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="tab-content-item-sale">
+                                                                    <div class="tab-content-item-sale__new">
+                                                                        <i class="fa fa-tag"></i>
+                                                                        <span>Cả ngày - Giảm {{$hot->st_sale}}</span>
+                                                                    </div>
+                                                                    <div class="tab-content-item-sale__detail">
+                                                                        {{$hot->st_desc_seo}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
+                                                            @endforeach
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="nav-all" role="tabpanel"
@@ -345,6 +369,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                            @endif
                                     </div>
                                 </div>
                             </div>

@@ -57,7 +57,7 @@
                         <td>
                             {{$product->pro_name}}
                             <ul style="padding-left: 20px">
-                                <li>Giá: {{number_format($product->pro_price,2, '.',' ')}} VND</li>
+                                <li>Giá: {{number_format($product->pro_price,0, ',','.')}} VND</li>
                                 <li>Sale: {{$product->pro_sale}} %</li>
                             </ul>
                         </td>

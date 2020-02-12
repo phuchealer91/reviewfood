@@ -10,7 +10,7 @@ if (!function_exists('pare_url_file')) {
 
         if (isset($explode[0])) {
             $time = str_replace('_', '/', $explode[0]);
-            return '/uploads/'.$folder.'/' . date('Y/m/d', strtotime($time)) . '/' . $image;
+            return '/uploads'.$folder.'/' . date('Y/m/d', strtotime($time)) . '/' . $image;
         }
     }
 }
@@ -51,7 +51,6 @@ if (!function_exists('upload_image'))
 
         if ( !\File::exists($path))
             mkdir($path,0777,true);
-
         // di chuyen file vao thu muc uploads
         move_uploaded_file($_FILES[$file]['tmp_name'], $path. $filename);
 
@@ -65,3 +64,5 @@ if (!function_exists('upload_image'))
         return $data;
     }
 }
+
+

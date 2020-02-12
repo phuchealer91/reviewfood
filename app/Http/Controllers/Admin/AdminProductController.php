@@ -12,6 +12,7 @@ use App\Models\TypeCook;
 use App\Models\TypeProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class AdminProductController extends Controller
 {
@@ -56,6 +57,7 @@ class AdminProductController extends Controller
     }
     public function update(RequestProduct $requestProduct,$id){
         $this->insertOrUpdate($requestProduct,$id);
+
         return redirect()->route('admin.index.product');
     }
     public function insertOrUpdate( $requestProduct, $id=''){
@@ -69,6 +71,8 @@ class AdminProductController extends Controller
             $product->pro_avatar = $requestProduct->pro_avatar;
             $product->pro_desc_seo = $requestProduct->pro_desc_seo ? $requestProduct->pro_desc_seo : $requestProduct->pro_name;
             $product->pro_keyword_seo = $requestProduct->pro_keyword_seo;
+//            dd($requestProduct->all());
+
             if($requestProduct->hasFile('pro_avatar')){
                 $file = upload_image('pro_avatar');
                 if(isset($file['name'])){
@@ -83,6 +87,9 @@ class AdminProductController extends Controller
             $product = Product::find($id);
             Switch($action){
                 case 'delete':
+                    $path_url = pare_url_file($product->pro_avatar);
+//                    dd($path_url);
+                    if(File::exists(Public_path(). $path_url)){ File::delete(Public_path() . $path_url);}
                     $product->delete();
                     break;
                 case 'action':
