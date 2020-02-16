@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 
 class TypeProduct extends Model
@@ -26,5 +25,14 @@ class TypeProduct extends Model
     {
         return array_get($this->status, $this->tp_active, '[N\A]');
         //có thể sử dụng $this
+    }
+
+//    public function relation_store()
+//    {
+//        return $this->hasMany(Store::class, 'st_typeProduct_id','id');
+//    }
+    public function get_store()
+    {
+        return $this->hasMany(Store::class, 'st_typeProduct_id','id')->where('st_active',Store::STATUS_PUBLIC);
     }
 }

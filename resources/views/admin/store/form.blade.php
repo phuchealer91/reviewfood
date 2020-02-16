@@ -84,9 +84,9 @@
                     @endforeach
                 @endif
             </select>
-            {{--            @if($errors->has('st_typeProduct_id'))--}}
-            {{--                <div class="error-txt">{{ $errors->first('st_typeProduct_id') }}</div>--}}
-            {{--            @endif--}}
+                        @if($errors->has('st_typeProduct_id'))
+                            <div class="error-txt">{{ $errors->first('st_typeProduct_id') }}</div>
+                        @endif
         </div>
         <hr>
         <div class="form-group">
@@ -99,9 +99,9 @@
                     @endforeach
                 @endif
             </select>
-{{--            @if($errors->has('st_typeCook_id'))--}}
-{{--                <div class="error-txt">{{ $errors->first('st_typeCook_id') }}</div>--}}
-{{--            @endif--}}
+            @if($errors->has('st_typeCook_id'))
+                <div class="error-txt">{{ $errors->first('st_typeCook_id') }}</div>
+            @endif
         </div>
         <div class="form-group">
             <label for="inputState">Hình thức cửa hàng</label>
@@ -120,13 +120,16 @@
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Ảnh mô tả</label>
             <input type="file" class="form-control"  name="st_avatar" value="{{old('st_avatar',isset($stores ->st_avatar) ? $stores ->st_avatar : '')}}">
+                        @if($errors->has('st_avatar'))
+                            <div class="error-txt">{{ $errors->first('st_avatar') }}</div>
+                        @endif
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Trạng thái</label>
             <div class="d-flex align-items-center">
                 <div class="form-check">
                     <label class="form-check-label" for="defaultCheck1">
-                        <input class="form-check-input" type="checkbox" name="st_hot" id="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" name="st_hot">
                         Nổi bật
                     </label>
                 </div>

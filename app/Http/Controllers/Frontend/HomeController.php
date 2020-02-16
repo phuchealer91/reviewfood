@@ -19,9 +19,16 @@ class HomeController extends FrontendController
             'st_hot'=> Store::HOT_ON,
             'st_active'=> Store::STATUS_PUBLIC
         ])->limit(5)->get();
+        $storeSales = Store::where([
+            ['st_sale','<>',0],
+            'st_active' => Store::STATUS_PUBLIC
+        ])->paginate(8);
+//        $typeStores = $this->relation_typeProduct->where('st_active',Store::STATUS_PUBLIC)->with('get_store')->paginate(4);
 
         $viewdata = [
-            'storeHot' => $storeHot
+            'storeHot' => $storeHot,
+//            'typeStores' =>$typeStores
+            'storeSales' => $storeSales
         ];
         return view('frontend.pages.home.index',$viewdata);
     }

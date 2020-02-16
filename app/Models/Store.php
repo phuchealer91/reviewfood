@@ -49,4 +49,11 @@ class Store extends Model
     public function relation_category(){
         return $this->belongsTo(Category::class,'st_category_id');
     }
+    public function relation_typeProduct(){
+        return $this->belongsTo(TypeProduct::class,'st_typeProduct_id');
+    }
+//    public function getStorePaginate(){
+//        return $this->get_store()->paginate(4);
+//    }
+
 }

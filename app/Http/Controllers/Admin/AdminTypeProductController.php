@@ -10,7 +10,10 @@ use App\Http\Controllers\Controller;
 class AdminTypeProductController extends AdminController
 {
     public function index(){
-        $viewdata['typeProducts'] = TypeProduct::select('id','tp_name','tp_active','tp_desc')->get();
+        $typeProducts = TypeProduct::select('id','tp_name','tp_active','tp_desc')->get();
+        $viewdata = [
+            'typeProducts' => $typeProducts
+        ];
         return view('admin.typeProduct.index',$viewdata);
     }
     public function create(){

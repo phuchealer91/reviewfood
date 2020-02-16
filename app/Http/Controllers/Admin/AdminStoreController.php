@@ -14,12 +14,33 @@ use App\Models\TypeQuality;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminStoreController extends AdminController
+class AdminStoreController extends Controller
 {
-    public function index(){
-        $stores = Store::with('relation_area:id,ar_name','relation_category:id,c_name')->paginate(20);
+    public function index(Request $request){
+        $stores = Store::with('relation_area:id,ar_name','relation_category:id,c_name','relation_typeProduct:id,tp_name');
+        if(isset($request->find_store)) $stores->where('st_name','like','%'.$request->find_store.'%');
+        if(isset($request->find_area)) $stores->where('st_area_id',$request->find_area);
+        if(isset($request->find_typeCook)) $stores->where('st_typeCook_id',$request->find_typeCook);
+        if(isset($request->find_typeProduct)) $stores->where('st_typeProduct_id',$request->find_typeProduct);
+        if(isset($request->find_category)) $stores->where('st_category_id',$request->find_category);
+
+
+        $stores = $stores->orderByDesc('id')->paginate(12);
+//        $storess = Store::with('relation_typeProduct:id,tp_name')->paginate(20);
+//        $typeStores = Store::with(['getStore' => function ($query) {
+//            $query->where( ['st_active' => Store::STATUS_PUBLIC])->paginate(20);
+//        }])->get();
+        $categories = $this->getCategories();
+        $areas = $this->getArea();
+        $typeCooks = $this->getTypeCook();
+        $typeProducts = $this->getTypeProduct();
+
         $viewdata = [
-            'stores' => $stores
+            'stores' => $stores,
+            'areas' => $areas,
+            'typeCooks' => $typeCooks,
+            'typeProducts' => $typeProducts,
+            'categories' => $categories
         ];
         return view('admin.store.index',$viewdata);
     }
@@ -79,8 +100,9 @@ class AdminStoreController extends AdminController
         $store->st_typeQuality_id = $requestStore->st_typeQuality_id;
         $store->st_price = $requestStore->st_price;
         $store->st_phone = $requestStore->st_phone;
+        $store->st_hot = $requestStore->st_hot ? $requestStore->st_hot : 0;
 //        $store->st_hot = $requestStore->st_hot;
-        $store->st_avatar = $requestStore->st_avatar;
+//        $store->st_avatar = $requestStore->st_avatar;
         $store->st_timeOpen = $requestStore->st_timeOpen;
         $store->st_address = $requestStore->st_address;
         $store->st_desc_seo = $requestStore->st_desc_seo ? $requestStore->st_desc_seo : $requestStore->st_name;
@@ -106,14 +128,13 @@ class AdminStoreController extends AdminController
 //            $img_file->move('upload/image/',$random_file_name); // file hình được upload sẽ chuyển vào thư mục có đường dẫn như trên
 //            $store->st_avatar = $random_file_name;
 //        }
+
         if($requestStore->hasFile('st_avatar')) {
             $file = upload_image('st_avatar');
-//        dd($path_url);
-            $path_url = pare_url_file($store->st_avatar);
-//    dd($path_url);
-            if(File::exists(public_path() . $path_url)) {
-            unlink(public_path() . $path_url);
-        }
+            $path_url = pare_url_file($store->pro_avatar);
+            if(File::exists(public_path() . $path_url)){
+                unlink( public_path(). $path_url);
+            }
             if (isset($file['name'])) {
                 $store->st_avatar = $file['name'];
             }
@@ -146,13 +167,13 @@ class AdminStoreController extends AdminController
         return Category::all();
     }
     public function getArea(){
-        return Area::select('id','ar_name')->get();
+        return Area::all();
     }
     public function getTypeCook(){
-        return TypeCook::select('id','tc_name')->get();
+        return TypeCook::all();
     }
     public function getTypeProduct(){
-        return TypeProduct::select('id','tp_name')->get();
+        return TypeProduct::all();
     }
     public function getTypeQuality(){
         return TypeQuality::select('id','tq_name')->get();

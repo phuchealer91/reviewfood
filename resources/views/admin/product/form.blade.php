@@ -48,13 +48,16 @@
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Ảnh mô tả</label>
             <input type="file" class="form-control" id="inputName" name="pro_avatar">
+            @if($errors->has('pro_avatar'))
+                <div class="error-txt">{{ $errors->first('pro_avatar') }}</div>
+            @endif
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Trạng thái</label>
             <div class="d-flex align-items-center">
                 <div class="form-check">
                     <label class="form-check-label" for="defaultCheck1">
-                        <input class="form-check-input" type="checkbox" name="pro_hot" id="defaultCheck1">
+                        <input class="form-check-input" type="checkbox" name="pro_hot" value="1">
                         Nổi bật
                     </label>
                 </div>

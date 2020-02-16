@@ -1,4 +1,5 @@
 .product-detail {
+  color: #333;
   margin: 40px 0; }
   .product-detail__img {
     width: 100%;
@@ -90,6 +91,61 @@
             .product-detail__main .detail-content__service .service-main .service-list__item--bl {
               color: black;
               font-weight: 400; }
+
+.menu-detail {
+  background: #eeeeee; }
+  .menu-detail .menu-td {
+    position: relative;
+    padding-top: 20px;
+    color: #ec0404; }
+  .menu-detail .menu-search {
+    max-width: 100%;
+    width: 60%; }
+  .menu-detail-main {
+    position: relative;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap; }
+    .menu-detail-main-list {
+      margin-top: 20px;
+      flex-basis: 15%; }
+  .menu-detail__content {
+    position: relative;
+    width: 160px;
+    height: 100%;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-shadow: 10px 14px 22px -3px rgba(0, 0, 0, 0.19);
+    border-radius: 5px; }
+    .menu-detail__content-img {
+      width: 100%;
+      height: 100%; }
+      .menu-detail__content-img img {
+        width: 100%;
+        object-fit: fill;
+        height: 170px; }
+    .menu-detail__content-txt {
+      text-align: center;
+      padding: 5px 0;
+      color: #333; }
+      .menu-detail__content-txt .menu-title {
+        font-size: 16px;
+        font-weight: bold; }
+      .menu-detail__content-txt .menu-price {
+        font-size: 18px;
+        font-weight: 450;
+         }
+      .menu-detail__content-txt .menu-price-sale {
+        font-size: 20px;
+        color: #ec0404;
+
+      }
+    .menu-detail__content-btn {
+      text-align: center;
+      margin: 0 auto;
+      padding-bottom: 10px; }
 
 @media screen and (max-width: 368px) {
   .product-detail .detail-content__service .service-line {

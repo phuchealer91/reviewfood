@@ -42,8 +42,28 @@ class AdminProductController extends Controller
         return view('admin.product.create',$viewdata);
     }
     public function store(RequestProduct $requestProduct){
-        $this->insertOrUpdate($requestProduct);
+//        $this->insertOrUpdate($requestProduct);
 //        dd($requestProduct->all());
+        $product = new Product();
+        $product->pro_name = $requestProduct->pro_name;
+        $product->pro_slug = str_slug($requestProduct->pro_name);
+        $product->pro_typeStore_id = $requestProduct->pro_typeStore_id;
+        $product->pro_price = $requestProduct->pro_price;
+        $product->pro_sale = $requestProduct->pro_sale;
+        $product->pro_hot = $requestProduct->pro_hot ? $requestProduct->pro_hot : 0;
+//        $product->pro_avatar = $requestProduct->pro_avatar;
+        $product->pro_desc_seo = $requestProduct->pro_desc_seo ? $requestProduct->pro_desc_seo : $requestProduct->pro_name;
+        $product->pro_keyword_seo = $requestProduct->pro_keyword_seo;
+//            dd($requestProduct->all());
+
+        if($requestProduct->hasFile('pro_avatar')){
+            $file = upload_image('pro_avatar');
+            if(isset($file['name'])){
+                $product->pro_avatar = $file['name'];
+            }
+        }
+
+        $product->save();
         return redirect()->back();
     }
     public function edit($id){
@@ -56,32 +76,64 @@ class AdminProductController extends Controller
         return view('admin.product.update',$viewdata);
     }
     public function update(RequestProduct $requestProduct,$id){
-        $this->insertOrUpdate($requestProduct,$id);
+//        $this->insertOrUpdate($requestProduct,$id);
+        $product = Product::find($id);
 
-        return redirect()->route('admin.index.product');
-    }
-    public function insertOrUpdate( $requestProduct, $id=''){
-            $product = new Product();
-            if($id) $product = Product::find($id);
-            $product->pro_name = $requestProduct->pro_name;
-            $product->pro_slug = str_slug($requestProduct->pro_name);
-            $product->pro_typeStore_id = $requestProduct->pro_typeStore_id;
-            $product->pro_price = $requestProduct->pro_price;
-            $product->pro_sale = $requestProduct->pro_sale;
-            $product->pro_avatar = $requestProduct->pro_avatar;
-            $product->pro_desc_seo = $requestProduct->pro_desc_seo ? $requestProduct->pro_desc_seo : $requestProduct->pro_name;
-            $product->pro_keyword_seo = $requestProduct->pro_keyword_seo;
+        $product->pro_name = $requestProduct->pro_name;
+        $product->pro_slug = str_slug($requestProduct->pro_name);
+        $product->pro_typeStore_id = $requestProduct->pro_typeStore_id;
+        $product->pro_price = $requestProduct->pro_price;
+        $product->pro_sale = $requestProduct->pro_sale;
+        $product->pro_hot = $requestProduct->pro_hot ? $requestProduct->pro_hot : 0;
+//        $product->pro_avatar = $requestProduct->pro_avatar;
+        $product->pro_desc_seo = $requestProduct->pro_desc_seo ? $requestProduct->pro_desc_seo : $requestProduct->pro_name;
+        $product->pro_keyword_seo = $requestProduct->pro_keyword_seo;
+//dd($requestProduct->all());
+
+        if($requestProduct->hasFile('pro_avatar')) {
+            $file = upload_image('pro_avatar');
+            $path_url = pare_url_file($product->pro_avatar);
+//        dd($path_url);
+//        if(File::exists(Public_path(). $path_url)){ File::delete(Public_path() . $path_url);}
+
+            if(file_exists(public_path() . $path_url)){
+                unlink( public_path(). $path_url);
+            }
+            if (isset($file['name'])) {
+                $product->pro_avatar = $file['name'];
+
+//                $path_url = $product->pro_avatar;
+//                if(File::exists(Public_path(). $path_url)){ File::delete(Public_path() . $path_url);}
+//                dd($product->pro_avatar);
+            }
+        }
+
 //            dd($requestProduct->all());
 
-            if($requestProduct->hasFile('pro_avatar')){
-                $file = upload_image('pro_avatar');
-                if(isset($file['name'])){
-                    $product->pro_avatar = $file['name'];
-                }
-            }
 
-            $product->save();
+        $product->save();
+        return redirect()->route('admin.index.product');
     }
+//    public function insertOrUpdate( $requestProduct, $id=''){
+//            if($id) $product = Product::find($id);
+//            $product->pro_name = $requestProduct->pro_name;
+//            $product->pro_slug = str_slug($requestProduct->pro_name);
+//            $product->pro_typeStore_id = $requestProduct->pro_typeStore_id;
+//            $product->pro_price = $requestProduct->pro_price;
+//            $product->pro_sale = $requestProduct->pro_sale;
+//            $product->pro_avatar = $requestProduct->pro_avatar;
+//            $product->pro_desc_seo = $requestProduct->pro_desc_seo ? $requestProduct->pro_desc_seo : $requestProduct->pro_name;
+//            $product->pro_keyword_seo = $requestProduct->pro_keyword_seo;
+////            dd($requestProduct->all());
+//            if($requestProduct->hasFile('pro_avatar')){
+//                $file = upload_image('pro_avatar');
+//                if(isset($file['name'])){
+//                    $product->pro_avatar = $file['name'];
+//                }
+//            }
+//
+//            $product->save();
+//    }
     public function delete($action,$id){
         if($action){
             $product = Product::find($id);
