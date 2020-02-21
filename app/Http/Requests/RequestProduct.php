@@ -26,7 +26,7 @@ class RequestProduct extends FormRequest
         return [
             'pro_name'=>'required | unique:products,pro_name,'.$this->id,
             'pro_typeStore_id'=>'required',
-//            'pro_avatar'=>'required',
+            'pro_count'=>'required',
 //            'pro_typeCook_id'=>'required',
 //            'pro_typeProduct_id'=>'required',
             'pro_price' => 'required'
@@ -39,7 +39,7 @@ class RequestProduct extends FormRequest
             'pro_name.required'=>'Tên sản phẩm không được để trống.',
             'pro_name.unique' => 'Tên sản phẩm đã tồn tại.',
             'pro_typeStore_id.required'=>'Sản phẩm thuộc cửa hàng không được để trống.',
-//            'pro_avatar.required'=>'Hình ảnh không được để trống.',
+            'pro_count.required'=>'Số lượng không được để trống.',
 //            'pro_typeCook_id.required'=>'Loại ẩm thực không được để trống.',
 //            'pro_typeProduct_id.required'=>'Loại sản phẩm không được để trống.',
             'pro_price.required'=>'Giá sản phẩm không được để trống.'

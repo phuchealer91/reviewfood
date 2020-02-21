@@ -10,16 +10,35 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+Route::group(['namespace'=>'Auth'],function (){
+    Route::get('dang-ky','RegisterController@getRegister')->name('get.register');
+    Route::post('dang-ky','RegisterController@postRegister')->name('post.register');
 
+    Route::get('dang-nhap','LoginController@getLogin')->name('get.login');
+    Route::post('dang-nhap','LoginController@postLogin')->name('post.login');
+    Route::get('dang-xuat','LoginController@getLogout')->name('post.logout.user');
 
+});
 Route::group(['namespace'=>'Frontend'],function (){
    Route::get('/','HomeController@index')->name('get.home');
 //   Route::get('danh-muc/{slug}-{id}','CategoryController@getListProduct')->name('get.list.product');
 //    Route::get('/','typeProductController@getTypeProduct')->name('get.type.Product');
     Route::get('san-pham/{slug}-{id}', 'StoreDetailController@getDetailStore')->name('get.detail.store');
 //    Route::get('store/get_by_product_type', 'typeProductController@getStoreByTypeId')->name('get.list.store_by_id');
-
+//    Gio hang
+    Route::group(['prefix'=>'shopping'],function (){
+        Route::get('/add/{id}','ShoppingCartController@addProduct')->name('add.shopping.cart');
+        Route::get('/danh-sach','ShoppingCartController@getListShoppingCart')->name('get.list.shopping.cart');
+        Route::get('/delete/{id}','ShoppingCartController@deleteShoppingCart')->name('delete.shopping.cart');
+    });
+// thanh toán
+    Route::group(['prefix' => 'giohang', 'middleware' =>'CheckLoginUser'], function() {
+        Route::get('/thanh-toan', 'ShoppingCartController@getFormPay')->name('get.form.pay');
+        Route::post('/thanh-toan', 'ShoppingCartController@saveInfoPayShoppingCart');
+    });
 });
+
 
 include 'route_admin.php';
 

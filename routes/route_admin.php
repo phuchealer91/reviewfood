@@ -70,4 +70,15 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin'], function() {
         Route::post('/update/{id}','AdminTypeQualityController@update');
         Route::get('/{action}/{id}','AdminTypeQualityController@delete')->name('admin.delete.typeQuality');
     });
+
+//    Quan ly don hang
+    Route::group(['prefix'=>'transaction'],function (){
+        Route::get('/','AdminTransactionController@index')->name('admin.index.transaction');
+        Route::get('/view/{id}','AdminTransactionController@viewDetail')->name('admin.view.transaction');
+    });
+
+    //Quan ly user
+    Route::group(['prefix'=>'user'],function (){
+        Route::get('/','AdminUserController@index')->name('admin.index.user');
+    });
 });

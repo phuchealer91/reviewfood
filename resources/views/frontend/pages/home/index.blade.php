@@ -1,23 +1,4 @@
 @extends('layouts.masterFrontend')
-@section('css')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet"/>
-    <!-- <link rel="stylesheet" href="/public/css/header.css">
-    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/css/sidebar-product.css">
-    <link rel="stylesheet" href="/public/css/customlayout.css">
-    <link rel="stylesheet" href="/public/css/product-site.css">
-    <link rel="stylesheet" href="/public/css/owlCustom.css">-->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-@endsection
 @section('content')
         <!-- Product - item -->
         @include('frontend.components.slider')
@@ -489,51 +470,4 @@
             </div>
         </div>
 
-@endsection
-@section('script')
-    <script type="text/javascript">
-        // $(document).on('click','.pagination a',function (e) {
-        //     e.preventDefault();
-        //     // console.log($(this).attr('href'));
-        //     var page = $(this).attr('href').split('page=')[1];
-        //     getStores(page);
-        // });
-        // function getStores(page) {
-        //     $.ajax({
-        //     url: '/stores/?page='+page
-        //     }).done(
-        //         function (data) {
-        //
-        //         }
-        //     )
-        // }
-        // $('.owl-carousels').owlCarousel({
-        //     loop:true,
-        //     margin:10,
-        //     nav:true,
-        //     responsive:{
-        //         0:{
-        //             items:1
-        //         },
-        //         600:{
-        //             items:3
-        //         },
-        //         1000:{
-        //             items:5
-        //         }
-        //     }
-        // })
-    </script>
-{{--    <script type="text/javascript">--}}
-{{--        const GET_STORE_URL = "{!! route('get.list.store_by_id') !!}";--}}
-{{--    </script>--}}
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-    <script src="{{asset('frontend/js/main.js')}}"></script>
-    <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen-sprite.png">
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 @endsection

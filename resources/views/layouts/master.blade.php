@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+{{--    <meta name="description" content="">--}}
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
     <meta name="author" content="">
     <title>Admin System</title>
     <!-- Custom fonts for this template-->
@@ -76,6 +77,18 @@
                     <a class="collapse-item {{\Request::route()->getName() == 'admin.index.typeQuality' ? 'active' : ''}}" href="{{route('admin.index.typeQuality')}}">Type Quality</a>
                 </div>
             </div>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item {{\Request::route()->getName() == 'admin.index.transaction' ? 'active' : ''}}">
+            <a class="nav-link" href="{{route('admin.index.transaction')}}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Quản lý đơn hàng</span></a>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item {{\Request::route()->getName() == 'admin.index.user' ? 'active' : ''}}">
+            <a class="nav-link" href="{{route('admin.index.user')}}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Quản lý user</span></a>
         </li>
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
@@ -388,16 +401,18 @@
 
 <!-- Bootstrap core JavaScript-->
 
-<script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
+{{--<script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>--}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
 <!-- Custom scripts for all pages-->
 <script src="{{asset('admin/js/sb-admin-2.min.js')}}"></script>
 <script src="{{asset('admin/js/main.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+@yield('script')
 
 <!-- Page level plugins -->
 {{--<script src="{{asset('theme_admin/vendor/chart.js/Chart.min.js')}}"></script>--}}
@@ -405,6 +420,58 @@
 {{--<!-- Page level custom scripts -->--}}
 {{--<script src="{{asset('theme_admin/js/demo/chart-area-demo.js')}}"></script>--}}
 {{--<script src="{{asset('theme_admin/js/demo/chart-pie-demo.js')}}"></script>--}}
+{{-- js tự động load ảnh khi thêm và sửa sản phẩm --}}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#out_img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#input_img").change(function() {
+        readURL(this);
+    });
+
+    $(document).ready(function() {
+        $('#loginModal').modal('show');
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".js-modal-register").click(function (event) {
+            event.preventDefault();
+            $("#myModal").modal('show');
+        });
+        {{--let URL = '{{ route('post.register') }}'--}}
+        {{--$('.js-btn-login').click(function (e) {--}}
+        {{--    e.preventDefault();--}}
+        {{--    let $this = $(this);--}}
+        {{--    let $domForm = $this.closest('form');--}}
+
+        {{--    $.ajax({--}}
+        {{--        url: URL,--}}
+        {{--        data: $domForm.serialize(),--}}
+        {{--        method: "POST",--}}
+        {{--    }).done(function (results) {--}}
+        {{--        $("#myModal").modal('hide');--}}
+        {{--        $("#form-register")[0].reset();--}}
+        {{--    }).fail(function (data) {--}}
+        {{--        var errors = data.responseJSON;--}}
+        {{--        $.each(errors.errors, function (i, val) {--}}
+        {{--            $domForm.find('input[name=' + i + ']').siblings('.error-form').text(val[0]);--}}
+        {{--        });--}}
+        {{--    });--}}
+        {{--});--}}
+    });
+
+</script>
 
 
 </html>

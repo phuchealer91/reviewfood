@@ -25,11 +25,16 @@ class StoreDetailController extends Controller
 //           $productInStoreDetail = Store::where([$storeDetails,Product::find('pro_typeStore_id')->get()
            $localDetail = Area::find($storeDetails->st_area_id);
            $typeCookDetail = TypeCook::find($storeDetails->st_typeCook_id);
+//           Shopping cart
+            $listProducts = \Cart::content();
+            $total = \Cart::subtotal(0,',','.');
             $viewdata = [
                 'storeDetails' => $storeDetails,
                 'localDetail' => $localDetail,
                 'typeCookDetail' => $typeCookDetail,
-                'productInStoreDetails'=>$productInStoreDetails
+                'productInStoreDetails'=>$productInStoreDetails,
+                'listProducts' =>  $listProducts,
+                'total' => $total
             ];
             return view('frontend.pages.store.detail', $viewdata);
         }

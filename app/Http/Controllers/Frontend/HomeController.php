@@ -24,11 +24,15 @@ class HomeController extends FrontendController
             'st_active' => Store::STATUS_PUBLIC
         ])->paginate(8);
 //        $typeStores = $this->relation_typeProduct->where('st_active',Store::STATUS_PUBLIC)->with('get_store')->paginate(4);
-
+//       Shopping cart
+        $listProducts = \Cart::content();
+        $total = \Cart::subtotal(0,',','.');
         $viewdata = [
             'storeHot' => $storeHot,
 //            'typeStores' =>$typeStores
-            'storeSales' => $storeSales
+            'storeSales' => $storeSales,
+            'listProducts' =>  $listProducts,
+            'total' => $total
         ];
         return view('frontend.pages.home.index',$viewdata);
     }

@@ -49,6 +49,7 @@ class AdminProductController extends Controller
         $product->pro_slug = str_slug($requestProduct->pro_name);
         $product->pro_typeStore_id = $requestProduct->pro_typeStore_id;
         $product->pro_price = $requestProduct->pro_price;
+        $product->pro_count = $requestProduct->pro_count;
         $product->pro_sale = $requestProduct->pro_sale;
         $product->pro_hot = $requestProduct->pro_hot ? $requestProduct->pro_hot : 0;
 //        $product->pro_avatar = $requestProduct->pro_avatar;
@@ -83,6 +84,7 @@ class AdminProductController extends Controller
         $product->pro_slug = str_slug($requestProduct->pro_name);
         $product->pro_typeStore_id = $requestProduct->pro_typeStore_id;
         $product->pro_price = $requestProduct->pro_price;
+        $product->pro_count = $requestProduct->pro_count;
         $product->pro_sale = $requestProduct->pro_sale;
         $product->pro_hot = $requestProduct->pro_hot ? $requestProduct->pro_hot : 0;
 //        $product->pro_avatar = $requestProduct->pro_avatar;

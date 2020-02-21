@@ -27,6 +27,8 @@
 // function myFunction() {
 //     document.getElementsByClassName("dropdown-local").classList.toggle("show");
 //   }
+
+
 $(document).ready(function() {
     $(".dropdown-local").click(function(e) {
         e.preventDefault();
@@ -83,10 +85,10 @@ $(document).ready(function() {
   const $button  = document.querySelector('#sidebar-toggle');
 const $wrapper = document.querySelector('#wrapper-main');
 
-$button.addEventListener('click', (e) => {
-  e.preventDefault();
-  $wrapper.classList.toggle('toggled');
-});
+// $button.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   $wrapper.classList.toggle('toggled');
+// });
 
 
 // function changeProductType(){
