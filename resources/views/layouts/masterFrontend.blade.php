@@ -6,6 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ReviewFoody</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     {{--    @yield('css')--}}
 {{--    Select options--}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet"/>
@@ -15,6 +17,8 @@
     <link rel="stylesheet" href="/public/css/customlayout.css">
     <link rel="stylesheet" href="/public/css/product-site.css">
     <link rel="stylesheet" href="/public/css/owlCustom.css">-->
+    {{--    Style all page--}}
+    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
 {{--    Silder Slick--}}
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
@@ -23,8 +27,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
     {{--    Bootstrap css--}}
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
-{{--    Style all page--}}
-    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+
 {{--    Fontawesome--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 {{--    toaster show success or error--}}
@@ -164,6 +167,7 @@
             }
         }
     </script>
+@yield('script')
 {{--Main js--}}
     <script src="{{asset('frontend/js/main.js')}}"></script>
 {{--Owl js--}}

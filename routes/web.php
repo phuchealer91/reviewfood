@@ -37,6 +37,11 @@ Route::group(['namespace'=>'Frontend'],function (){
         Route::get('/thanh-toan', 'ShoppingCartController@getFormPay')->name('get.form.pay');
         Route::post('/thanh-toan', 'ShoppingCartController@saveInfoPayShoppingCart');
     });
+//    Danh gia
+    Route::group(['prefix' => 'rating', 'middleware' =>'CheckLoginUser'], function() {
+        Route::post('/danh-gia/{id}', 'RatingController@saveRatingStore')->name('get.rating.store');
+
+    });
 });
 
 

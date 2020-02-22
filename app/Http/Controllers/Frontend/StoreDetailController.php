@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Area;
 use App\Models\Product;
+use App\Models\Rating;
 use App\Models\Store;
 use App\Models\TypeCook;
 use Illuminate\Http\Request;
@@ -28,13 +29,15 @@ class StoreDetailController extends Controller
 //           Shopping cart
             $listProducts = \Cart::content();
             $total = \Cart::subtotal(0,',','.');
+            $ratings = Rating::where('ra_store_id',$id)->orderBy('id','DESC')->paginate(6);
             $viewdata = [
                 'storeDetails' => $storeDetails,
                 'localDetail' => $localDetail,
                 'typeCookDetail' => $typeCookDetail,
                 'productInStoreDetails'=>$productInStoreDetails,
                 'listProducts' =>  $listProducts,
-                'total' => $total
+                'total' => $total,
+                'ratings' => $ratings
             ];
             return view('frontend.pages.store.detail', $viewdata);
         }
