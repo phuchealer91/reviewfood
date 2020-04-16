@@ -28,7 +28,7 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin'], function() {
         Route::post('/create','AdminProductController@store');
         Route::get('/update/{id}','AdminProductController@edit')->name('admin.update.product');
         Route::post('/update/{id}','AdminProductController@update');
-        Route::get('/{action}/{id}','AdminProductController@delete')->name('admin.delete.product');
+        Route::get('/{action}/{id}','AdminProductController@action')->name('admin.action.product');
     });
     Route::group(['prefix'=>'store'],function (){
         Route::get('/','AdminStoreController@index')->name('admin.index.store');
@@ -80,5 +80,10 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin'], function() {
     //Quan ly user
     Route::group(['prefix'=>'user'],function (){
         Route::get('/','AdminUserController@index')->name('admin.index.user');
+    });
+//    Lay danh gia
+    Route::group(['prefix'=>'rating'],function (){
+        Route::get('/','AdminRatingController@index')->name('admin.index.rating');
+        Route::get('/{action}/{id}','AdminRatingController@delete')->name('admin.delete.rating');
     });
 });

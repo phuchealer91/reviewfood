@@ -11,6 +11,7 @@ use PhpParser\Node\Stmt\Switch_;
 
 class AdminCategoryController extends AdminController
 {
+//    Trang index
     public function index(){
         $viewdata['categories'] = Category::select('id','c_name','c_desc_seo','c_title_seo','c_active')->get();
 //        $viewdata = [
@@ -19,9 +20,11 @@ class AdminCategoryController extends AdminController
 //        dd($viewdata);
         return view('admin.category.index',$viewdata);
     }
+//    Trang thêm mới danh mục
     public function create(){
         return view('admin.category.create');
     }
+//    Xử lí lưu dữ liệu
     public function store(AdminRequestCategory $requestCategory){
         $category = new Category();
         $category->c_name = $requestCategory->name;

@@ -35,8 +35,12 @@
             <input type="text" class="form-control" id="inputName"  name="st_phone" value="{{old('st_phone',isset($stores ->st_phone) ? $stores ->st_phone : '')}}">
         </div>
         <div class="form-group">
-            <label for="inputName" class="col-form-label" >Từ khóa sản phẩm (SEO)</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Tên tiêu đề..." value="{{old('st_keyword_seo',isset($stores ->st_keyword_seo) ? $stores ->st_keyword_seo : '')}}" name="st_keyword_seo">
+            <label for="inputName" class="col-form-label" >Latitude</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Lat....." value="{{old('st_lng',isset($stores ->st_lng) ? $stores ->st_lng : '')}}" name="st_lng">
+        </div>
+        <div class="form-group">
+            <label for="inputName" class="col-form-label" >Longitude</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Lng..." value="{{old('st_lat',isset($stores ->st_lat) ? $stores ->st_lat : '')}}" name="st_lat">
         </div>
         <div class="form-group">
             <label for="inputName" class="col-form-label" >Miêu tả ngắn gọn</label>

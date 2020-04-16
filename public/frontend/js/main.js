@@ -38,6 +38,12 @@ $(document).ready(function() {
         $("div.dropdown-local-item").text($(this).text());
     });
 
+    //    Goole map api
+    // function initMap() {
+
+    // }
+    // initMap();
+
 });
 $(document).ready(function() {
     $('.owl-carousel').owlCarousel({

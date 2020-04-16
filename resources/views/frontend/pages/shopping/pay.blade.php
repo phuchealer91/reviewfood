@@ -52,7 +52,7 @@
                                         <textarea name="note"  class="form-control" cols="30" rows="3" placeholder="Nội dung" style="resize: none"></textarea>
                                     </div>
                                     <div class="row mb-5 mt-4 ">
-                                        <div class="col-md-7 col-lg-6 mx-auto"><button type="submit" class="btn btn-block btn-outline-primary btn-lg">Xác nhận thanh toán</button></div>
+                                        <div class="col-md-7 col-lg-6 mx-auto"><button type="submit" class="btn btn-block btn-outline-primary btn-lg">Xác nhận</button></div>
                                     </div>
                                 </div>
                                 </form>

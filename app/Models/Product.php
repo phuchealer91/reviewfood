@@ -41,6 +41,7 @@ class Product extends Model
     public function getHot(){
         return array_get($this->hot,$this->pro_hot,'[N\A]');
     }
+//    1 cửa hàng có nhiều sản phẩm (ngược lại) mục đích lấy ra trường nào đó trong cửa hàng
     public function relation_store()
     {
         return $this->belongsTo(Store::class,'pro_typeStore_id');

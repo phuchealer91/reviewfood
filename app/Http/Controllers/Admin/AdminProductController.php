@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\File;
 class AdminProductController extends Controller
 {
     public function index(Request $request){
+//        lấy dữ liệu để tìm kiếm
             $products = Product::with('relation_store:id,st_name');
             if(isset($request->search_name)) $products->where('pro_name','like','%'.$request->search_name.'%');
             if(isset($request->search_store)) $products->where('pro_typeStore_id',$request->search_store);
@@ -26,7 +27,7 @@ class AdminProductController extends Controller
             $stores = $this->getStore();
             $viewdata = [
               'products' => $products,
-                'stores'=>$stores
+                'stores' => $stores
             ];
         return view('admin.product.index',$viewdata);
     }
@@ -79,7 +80,6 @@ class AdminProductController extends Controller
     public function update(RequestProduct $requestProduct,$id){
 //        $this->insertOrUpdate($requestProduct,$id);
         $product = Product::find($id);
-
         $product->pro_name = $requestProduct->pro_name;
         $product->pro_slug = str_slug($requestProduct->pro_name);
         $product->pro_typeStore_id = $requestProduct->pro_typeStore_id;
@@ -136,7 +136,7 @@ class AdminProductController extends Controller
 //
 //            $product->save();
 //    }
-    public function delete($action,$id){
+    public function action($action,$id){
         if($action){
             $product = Product::find($id);
             Switch($action){
@@ -146,7 +146,7 @@ class AdminProductController extends Controller
                     if(File::exists(Public_path(). $path_url)){ File::delete(Public_path() . $path_url);}
                     $product->delete();
                     break;
-                case 'action':
+                case 'active':
                     $product->pro_active =  ! $product->pro_active;
                     $product->save();
                     break;

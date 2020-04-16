@@ -8,7 +8,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
             </ol>
         </nav>
-        </ol>
     </div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
@@ -38,7 +37,9 @@
                         <td>{{$category->c_name}}</td>
                         <td>{{$category->c_title_seo}}</td>
                         <td>{{$category->c_desc_seo}}</td>
-                        <td><a href="" class="{{$category->getStatus($category->c_active)['class']}}">{{$category->getStatus($category->c_active)['name']}}</a></td>
+                        <td>
+                            <a href="" class="{{$category->getStatus($category->c_active)['class']}}">{{$category->getStatus($category->c_active)['name']}}</a>
+                        </td>
                         <td>
                             <a href="{{route('admin.update.category',$category->id)}}" class="btn btn-success">Sửa</a>
                             <a href="{{route('admin.delete.category',['delete',$category->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>

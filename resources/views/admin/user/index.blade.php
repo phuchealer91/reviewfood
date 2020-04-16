@@ -12,7 +12,7 @@
     </div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
-            Quản lý danh mục
+            Quản lý user
         </h1>
         <a href="{{route('admin.create.category')}}" class="btn btn-success pull-right">Thêm mới</a>
     </div>

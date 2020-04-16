@@ -8,7 +8,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Thêm mới</li>
             </ol>
         </nav>
-        </ol>
     </div>
     {{--    <div class="container-fluid">--}}
     <div class="row">

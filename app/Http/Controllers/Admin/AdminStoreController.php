@@ -101,12 +101,13 @@ class AdminStoreController extends Controller
         $store->st_price = $requestStore->st_price;
         $store->st_phone = $requestStore->st_phone;
         $store->st_hot = $requestStore->st_hot ? $requestStore->st_hot : 0;
-//        $store->st_hot = $requestStore->st_hot;
+        $store->st_lat = $requestStore->st_lat;
+        $store->st_lng = $requestStore->st_lng;
+
 //        $store->st_avatar = $requestStore->st_avatar;
         $store->st_timeOpen = $requestStore->st_timeOpen;
         $store->st_address = $requestStore->st_address;
         $store->st_desc_seo = $requestStore->st_desc_seo ? $requestStore->st_desc_seo : $requestStore->st_name;
-        $store->st_keyword_seo = $requestStore->st_keyword_seo;
 //        dd($requestStore->all());
 
 //        if($requestStore->hasFile('st_avatar'))

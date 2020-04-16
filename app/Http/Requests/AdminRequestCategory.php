@@ -24,7 +24,7 @@ class AdminRequestCategory extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required | unique:categories,c_name,'.$this->id
+            'name'=>'required | unique:categories,c_name,'.$this->id //$this->>id để khi ta edit sẽ loại bỏ chính cái id phần tử mà ta đang edit
 //            'icon'=>'required'
         ];
     }

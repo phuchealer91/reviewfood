@@ -18,7 +18,7 @@ class StoreDetailController extends Controller
         $url = preg_split('/(-)/i', $url);
         if ($id = array_pop($url)) {
            $storeDetails = Store::where('st_active',Store::STATUS_PUBLIC)->find($id);
-//           dd($storeDetails->id);
+//           dd($storeDetails->all());
             $productInStoreDetails =  Product::where([
                 'pro_typeStore_id'=>$id,
                 'pro_active'=>Product::STATUS_PUBLIC

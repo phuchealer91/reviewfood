@@ -23,7 +23,8 @@ class CreateStoresTable extends Migration
             $table->string('st_timeOpen')->nullable();
             $table->string('st_address')->nullable();
             $table->tinyInteger('st_active')->default(1)->index();
-            $table->integer('st_view')->default(0);
+            $table->double('st_lat')->nullable()->index()->default(0);
+            $table->double('st_lng')->nullable()->index()->default(0);
             $table->string('st_avatar')->nullable();
             $table->tinyInteger('st_hot')->default(0);
             $table->tinyInteger('st_activeOpen')->default(0);
@@ -33,7 +34,7 @@ class CreateStoresTable extends Migration
             $table->integer('st_typeCook_id')->nullable()->index()->default(0);
             $table->integer('st_typeProduct_id')->nullable()->index()->default(0);
             $table->string('st_desc_seo')->nullable();
-            $table->string('st_keyword_seo')->nullable();
+
             $table->timestamps();
         });
     }

@@ -8,7 +8,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
             </ol>
         </nav>
-        </ol>
     </div>
     <div class="col-sm-12 col-md-10">
         <form action="" class="d-inline-flex">
@@ -61,13 +60,14 @@
                                 <li>Sale: {{$product->pro_sale}} %</li>
                             </ul>
                         </td>
+                        {{--                        Reletionship--}}
                         <td>{{isset($product->relation_store->st_name) ? $product->relation_store->st_name : '[N\A]'}}</td>
-                        <td><a href="{{route('admin.delete.product',['action',$product->id])}}" class="{{$product->getStatus($product->pro_active)['class']}}">{{$product->getStatus($product->pro_active)['pro_name']}}</a></td>
+                        <td><a href="{{route('admin.action.product',['active',$product->id])}}" class="{{$product->getStatus($product->pro_active)['class']}}">{{$product->getStatus($product->pro_active)['pro_name']}}</a></td>
                         <td><img src="{{pare_url_file($product->pro_avatar)}}" alt="" width="80px" height="80px"></td>
-                        <td ><a href="{{route('admin.delete.product',['hot',$product->id])}}" class="{{$product->getHot($product->pro_hot)['class']}}">{{$product->getHot($product->pro_hot)['name']}}</a></td>
+                        <td ><a href="{{route('admin.action.product',['hot',$product->id])}}" class="{{$product->getHot($product->pro_hot)['class']}}">{{$product->getHot($product->pro_hot)['name']}}</a></td>
                         <td >
                             <a href="{{route('admin.update.product',$product->id)}}" class="btn btn-success mr-1">Sửa</a>
-                            <a href="{{route('admin.delete.product',['delete',$product->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
+                            <a href="{{route('admin.action.product',['delete',$product->id])}}" onclick="return confirm('Bạn có chắc chắn xóa không?')" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
                 @endforeach

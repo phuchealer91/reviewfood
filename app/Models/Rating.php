@@ -13,4 +13,7 @@ class Rating extends Model
     public function getUserRating(){
         return $this->belongsTo(User::class,'ra_user_id','id');
     }
+    public function getStoreRating(){
+        return $this->belongsTo(Store::class,'ra_store_id','id');
+    }
 }

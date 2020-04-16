@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2020 at 02:27 PM
+-- Generation Time: Mar 19, 2020 at 05:09 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -155,10 +155,36 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (29, '2020_02_05_170317_create_type_products_table', 1),
 (30, '2020_02_06_095409_create_stores_table', 1),
 (31, '2020_02_06_110821_create_type_qualitys_table', 1),
-(32, '2020_02_06_145252_update_st_price_table_stores', 2),
-(37, '2020_02_06_155704_update_st_phone_table_stores', 3),
-(38, '2020_02_06_174702_update_active_table_areas_type_cook_product_quality', 3),
-(39, '2020_02_07_121714_update_add_column_pro_count_table_products', 3);
+(42, '2020_02_19_160125_create_transactions_table', 2),
+(43, '2020_02_19_160146_create_orders_table', 2),
+(44, '2020_02_21_163849_create_ratings_table', 3),
+(45, '2020_02_21_164650_alter_column_rating_in_table_stores', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `or_transaction_id` int(11) NOT NULL DEFAULT 0,
+  `or_product_id` int(11) NOT NULL DEFAULT 0,
+  `or_qty` tinyint(4) NOT NULL DEFAULT 0,
+  `or_price` int(11) NOT NULL DEFAULT 0,
+  `or_sale` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `or_transaction_id`, `or_product_id`, `or_qty`, `or_price`, `or_sale`, `created_at`, `updated_at`) VALUES
+(1, 1, 25, 1, 13500, 10, '2020-02-19 20:38:35', '2020-02-19 20:38:35'),
+(2, 1, 26, 2, 15000, 0, '2020-02-19 20:38:35', '2020-02-19 20:38:35'),
+(3, 2, 26, 1, 15000, 0, '2020-02-19 20:49:13', '2020-02-19 20:49:13');
 
 -- --------------------------------------------------------
 
@@ -201,10 +227,61 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `pro_name`, `pro_slug`, `pro_price`, `pro_sale`, `pro_active`, `pro_view`, `pro_hot`, `pro_avatar`, `pro_typeStore_id`, `pro_desc_seo`, `pro_keyword_seo`, `created_at`, `updated_at`, `pro_count`) VALUES
-(1, 'Trà đào', 'tra-dao', 15000, 0, 0, 0, 0, NULL, 1, 'Trà đào', 'tra dao', '2020-02-07 11:35:59', '2020-02-09 10:21:38', 0),
-(2, 'Cafe black', 'cafe-black', 15000, 0, 0, 0, 1, NULL, 2, 'Cafe black', NULL, '2020-02-08 23:50:55', '2020-02-09 10:21:33', 0),
-(3, 'Trà xanh', 'tra-xanh', 18000, 0, 0, 0, 1, '2020-02-11__pl00.png', 11, 'Trà xanh', NULL, '2020-02-09 09:43:21', '2020-02-11 06:01:14', 0),
-(4, 'Trà É', 'tra-e', 10500, 0, 1, 0, 0, '2020-02-11__.jpg', 11, 'Trà É', NULL, '2020-02-09 09:43:58', '2020-02-11 06:01:32', 0);
+(22, 'Trà xanh', 'tra-xanh', 15000, 0, 1, 0, 0, '2020-02-15__1.jpg', 6, 'Trà xanh', NULL, '2020-02-14 18:17:21', '2020-03-19 07:30:01', 0),
+(23, 'Trà mía', 'tra-mia', 50000, 10, 0, 0, 1, '2020-02-15__foody-upload-api-foody-mobile-2-190904104303.jpg', 5, 'Trà mía', NULL, '2020-02-14 18:19:23', '2020-02-15 23:53:15', 50),
+(24, 'Cơm sườn', 'com-suon', 15000, 1, 1, 0, 1, '2020-02-15__foody-upload-api-foody-mobile-bui-gia-jpg-180607172823.jpg', 11, 'Cơm sườn', NULL, '2020-02-14 18:20:03', '2020-02-14 18:20:03', 50),
+(25, 'Phở bò', 'pho-bo', 15000, 10, 1, 0, 0, '2020-02-15__foody-upload-api-foody-mobile-avar1-jpg-181126093556.jpg', 11, 'Phở bò', NULL, '2020-02-14 18:20:28', '2020-02-15 21:50:42', 50),
+(26, 'Nước mía', 'nuoc-mia', 20000, 0, 1, 0, 1, '2020-02-15__reee.png', 11, 'Nước mía', NULL, '2020-02-14 22:41:09', '2020-02-15 23:56:02', 50),
+(27, 'Trà bí đao', 'tra-bi-dao', 20000, 0, 1, 0, 0, '2020-02-19__foody-upload-api-foody-mobile-hu-jpg-181207160105.jpg', 6, 'Trà bí đao', NULL, '2020-02-18 18:22:31', '2020-03-19 07:29:45', 50),
+(28, 'Trà gừng', 'tra-gung', 16000, 5, 1, 0, 1, '2020-02-19__foody-mobile-2-jpg-643-636184452867311732.jpg', 22, 'Trà gừng', NULL, '2020-02-18 18:25:14', '2020-02-18 18:25:14', 0),
+(29, 'Ô lông', 'o-long', 5000, 0, 0, 0, 0, '2020-02-19__foody-d80ea0077fb6ddb5667182cf637aae94e733a3cf554264152cpimgpsh-fullsize-distr-636325406945647961.jpg', 4, 'Ô lông', NULL, '2020-02-18 18:35:44', '2020-03-18 20:00:08', 50),
+(30, 'Trà đào 2', 'tra-dao-2', 18000, 2, 1, 0, 1, '2020-03-19__pizza-1.jpg', 6, 'Trà đào 2', NULL, '2020-03-19 07:32:06', '2020-03-19 07:32:06', 50),
+(31, 'Trà Bí ngô', 'tra-bi-ngo', 16000, 0, 1, 0, 0, '2020-03-19__pizza-2.jpg', 6, 'Trà Bí ngô', NULL, '2020-03-19 07:32:30', '2020-03-19 07:32:30', 50);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ratings`
+--
+
+CREATE TABLE `ratings` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `ra_store_id` int(11) NOT NULL DEFAULT 0,
+  `ra_number_space` tinyint(4) NOT NULL DEFAULT 0,
+  `ra_number_position` tinyint(4) NOT NULL DEFAULT 0,
+  `ra_number_serve` tinyint(4) NOT NULL DEFAULT 0,
+  `ra_number_quality` tinyint(4) NOT NULL DEFAULT 0,
+  `ra_number_price` tinyint(4) NOT NULL DEFAULT 0,
+  `ra_content` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ra_user_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`id`, `ra_store_id`, `ra_number_space`, `ra_number_position`, `ra_number_serve`, `ra_number_quality`, `ra_number_price`, `ra_content`, `ra_user_id`, `created_at`, `updated_at`) VALUES
+(1, 6, 9, 9, 10, 8, 10, 'san pham rat tot', 1, '2020-02-21 17:00:00', '2020-02-21 17:00:00'),
+(2, 7, 8, 8, 5, 5, 6, 'Luôn ủng hộ chủ quán', 1, '2020-02-21 17:00:00', '2020-02-21 17:00:00'),
+(3, 6, 7, 9, 7, 6, 8, 'Cửa hàng quá tốt', 5, '2020-02-21 11:10:03', '2020-02-21 11:10:03'),
+(4, 6, 1, 2, 3, 4, 3, 'không hài lòng lắm', 1, '2020-02-21 17:10:37', '2020-02-21 17:10:37'),
+(5, 7, 9, 9, 6, 9, 7, 'Quá tuyệt vời. Cần mở thêm chi nhánh', 6, '2020-02-21 18:16:12', '2020-02-21 18:16:12'),
+(6, 22, 10, 10, 10, 10, 10, 'Quán có cô chủ quá đẹp =)) Triệu like ^^', 6, '2020-02-21 18:20:44', '2020-02-21 18:20:44'),
+(7, 6, 10, 10, 10, 10, 10, 'Quá tuyệt vời', 6, '2020-02-21 20:37:48', '2020-02-21 20:37:48'),
+(8, 6, 9, 9, 9, 9, 8, 'Ố la la món ăn quá ngon', 6, '2020-02-22 03:44:02', '2020-02-22 03:44:02'),
+(9, 8, 9, 10, 10, 10, 10, 'Rất hài lòng với cách phục vụ và các món ăn rất ngon. See you later ^^', 6, '2020-02-22 00:23:59', '2020-02-22 00:23:59'),
+(10, 8, 10, 10, 10, 10, 10, 'Quá tuyệt vời', 6, '2020-02-22 07:26:28', '2020-02-22 07:26:28'),
+(11, 6, 10, 9, 10, 9, 9, 'Tuyệt vời', 6, '2020-02-22 07:28:42', '2020-02-22 07:28:42'),
+(12, 6, 10, 10, 10, 10, 10, 'Ahiihihh', 6, '2020-02-22 07:32:00', '2020-02-22 07:32:00'),
+(13, 11, 0, 0, 0, 0, 0, 'Test đánh giá rồi hay chưa nè', 6, '2020-02-23 16:21:43', '2020-02-23 16:21:43'),
+(14, 14, 0, 0, 0, 0, 0, 'Test đánh giá rồi hay chưa nè', 6, '2020-02-23 16:24:08', '2020-02-23 16:24:08'),
+(15, 19, 0, 0, 0, 0, 0, 'Test đánh giá rồi hay chưa nè', 6, '2020-02-23 16:26:28', '2020-02-23 16:26:28'),
+(16, 19, 8, 8, 9, 9, 9, 'Test đánh giá rồi hay chưa nè', 6, '2020-02-23 16:26:44', '2020-02-23 16:26:44'),
+(17, 19, 0, 0, 0, 0, 0, 'hello nè', 6, '2020-02-23 16:37:58', '2020-02-23 16:37:58'),
+(18, 17, 3, 3, 3, 3, 4, 'bánh testttttttttttttttttt', 6, '2020-02-23 16:44:45', '2020-02-23 16:44:45'),
+(19, 4, 6, 7, 8, 8, 8, 'Quá ngon', 1, '2020-03-19 15:39:02', '2020-03-19 15:39:02');
 
 -- --------------------------------------------------------
 
@@ -234,25 +311,64 @@ CREATE TABLE `stores` (
   `st_keyword_seo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `st_phone` int(11) DEFAULT 0
+  `st_phone` int(11) DEFAULT 0,
+  `st_total_rating` int(11) NOT NULL DEFAULT 0,
+  `st_total_number` int(11) NOT NULL DEFAULT 0,
+  `st_total_space` int(11) NOT NULL DEFAULT 0,
+  `st_total_position` int(11) NOT NULL DEFAULT 0,
+  `st_total_serve` int(11) NOT NULL DEFAULT 0,
+  `st_total_quality` int(11) NOT NULL DEFAULT 0,
+  `st_total_price` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `stores`
 --
 
-INSERT INTO `stores` (`id`, `st_name`, `st_slug`, `st_price`, `st_sale`, `st_timeOpen`, `st_address`, `st_active`, `st_view`, `st_avatar`, `st_hot`, `st_activeOpen`, `st_category_id`, `st_typeQuality_id`, `st_area_id`, `st_typeCook_id`, `st_typeProduct_id`, `st_desc_seo`, `st_keyword_seo`, `created_at`, `updated_at`, `st_phone`) VALUES
-(1, 'Hoa Hồi Food - Tiệm Bánh Mì Nướng Lạng Sơn', 'hoa-hoi-food-tiem-banh-mi-nuong-lang-son', '15,000 - 30,000', 0, '07:00 - 23:00', '104 C3 Nghĩa Tân, Quận Cầu Giấy, Hà Nội', 1, 0, NULL, 0, 0, 1, NULL, 2, NULL, NULL, 'Tiệm Bánh Mì Nướng Lạng Sơn', 'hoa doi food', '2020-02-07 07:22:29', '2020-02-09 00:05:46', NULL),
-(2, 'Ông Sơn - Bún Cá Biển Cay - Nguyễn Trãi', 'ong-son-bun-ca-bien-cay-nguyen-trai', '15,000 - 50,000', 0, '07:00 - 23:00', '271 Nguyễn Trãi, Quận Thanh Xuân, Hà Nội', 1, 0, NULL, 0, 0, 1, 15, 2, 1, 1, 'Bún Cá Biển Cay - Nguyễn Trãi', 'ong son', '2020-02-07 07:55:41', '2020-02-07 07:55:41', NULL),
-(3, 'Thái Hạnh - Huy Mai - Quán Ăn Vặt', 'thai-hanh-huy-mai-quan-an-vat', '5,000 - 50,000', 0, '07:00 - 23:00', '3 Ngõ 4C Đặng Văn Ngữ, Quận Đống Đa, Hà Nội', 1, 0, NULL, 0, 0, 1, 4, 2, 1, 1, 'Thái Hạnh - Huy Mai - Quán Ăn Vặt', NULL, '2020-02-07 07:58:02', '2020-02-07 07:58:02', NULL),
-(4, 'Trà Sữa Gong Cha - 貢茶 - Lý Thường Kiệt', 'tra-sua-gong-cha-ly-thuong-kiet', '15,000 - 50,000', 0, '07:00 - 23:00', '56 Lý Thường Kiệt, Quận Hoàn Kiếm, Hà Nội', 1, 0, NULL, 0, 0, 1, 15, 2, 1, 2, 'Trà Sữa Gong Cha - 貢茶 - Lý Thường Kiệt', NULL, '2020-02-07 07:59:01', '2020-02-07 07:59:01', NULL),
-(5, 'Chill Tea - Thống Nhất', 'chill-tea-thong-nhat', '15,000 - 30,000', 0, '07:00 - 22:00', '63 Thống Nhất, P. Bình Thọ, Thủ Đức, TP. HCM', 1, 0, NULL, 0, 0, 1, 15, 1, 1, 2, 'Chill Tea - Thống Nhất', NULL, '2020-02-07 08:00:08', '2020-02-07 08:00:08', NULL),
-(6, 'Mì Nhật Hana Maru - Nguyễn Ngọc Phương', 'mi-nhat-hana-maru-nguyen-ngoc-phuong', '15,000 - 50,000', 0, '07:00 - 2:00', '8C Nguyễn Ngọc Phương, P. 19, Bình Thạnh, TP. HCM', 1, 0, NULL, 0, 0, 1, 7, 1, 8, 12, 'Mì Nhật Hana Maru - Nguyễn Ngọc Phương', NULL, '2020-02-07 08:01:01', '2020-02-07 08:01:01', NULL),
-(7, 'Chilli Thai - Ăn Vặt - Mạc Thị Bưởi', 'chilli-thai-an-vat-mac-thi-buoi', '15,000 - 50,000', 0, '07:00 - 23:00', '38 Mạc Thị Bưởi, P. Bến Nghé, Quận 1, TP. HCM', 1, 0, NULL, 0, 0, 1, 4, 1, 6, 7, 'Chilli Thai - Ăn Vặt - Mạc Thị Bưởi', NULL, '2020-02-07 08:01:58', '2020-02-07 08:01:58', NULL),
-(8, 'Trung Tâm Triển Lãm & Hội Nghị Sài Gòn (SECC) - Nguyễn Văn Linh', 'trung-tam-trien-lam-hoi-nghi-sai-gon-secc-nguyen-van-linh', '150,000 - 500,000', 0, '07:00 - 23:00', '799 Nguyễn Văn Linh, P. Tân Phú,  Quận 7, TP. HCM', 1, 0, NULL, 0, 0, 2, 13, 3, 1, 12, 'Trung Tâm Triển Lãm & Hội Nghị Sài Gòn (SECC) - Nguyễn Văn Linh', NULL, '2020-02-07 08:03:51', '2020-02-07 08:03:51', NULL),
-(9, 'Chang - Modern Thai Cuisine - Cao Thắng', 'chang-modern-thai-cuisine-cao-thang', '5,000 - 50,000', 0, '07:00 - 23:00', '4 Cao Thắng, P. 5, Quận 3', 1, 0, NULL, 0, 0, 1, NULL, 1, 1, 1, 'Chang - Modern Thai Cuisine - Cao Thắng', NULL, '2020-02-07 08:31:22', '2020-02-07 08:31:22', NULL),
-(10, 'Pizza Mập - Pizza Online', 'pizza-map-pizza-online', '70,000 - 130,000', 0, '07:00 - 23:00', '50/514 Thụy Khuê, Quận Tây Hồ, Hà Nội', 1, 0, NULL, 0, 0, 1, NULL, 2, NULL, 8, 'Pizza Mập - Pizza Online', 'dddd', '2020-02-07 08:43:34', '2020-02-09 00:28:42', 383600764),
-(11, 'Xích Beer - Nguyên Hồng', 'xich-beer-nguyen-hong', '100.000 - 200.000', 0, '10:00 - 23:59', '68 Nguyên Hồng,  Quận Đống Đa, Hà Nội', 1, 0, NULL, 0, 0, 1, 13, 2, 1, NULL, 'Xích Beer - Nguyên Hồng', NULL, '2020-02-07 08:44:45', '2020-02-07 08:44:45', NULL);
+INSERT INTO `stores` (`id`, `st_name`, `st_slug`, `st_price`, `st_sale`, `st_timeOpen`, `st_address`, `st_active`, `st_view`, `st_avatar`, `st_hot`, `st_activeOpen`, `st_category_id`, `st_typeQuality_id`, `st_area_id`, `st_typeCook_id`, `st_typeProduct_id`, `st_desc_seo`, `st_keyword_seo`, `created_at`, `updated_at`, `st_phone`, `st_total_rating`, `st_total_number`, `st_total_space`, `st_total_position`, `st_total_serve`, `st_total_quality`, `st_total_price`) VALUES
+(4, 'Trà Sữa Gong Cha - 貢茶 - Lý Thường Kiệt', 'tra-sua-gong-cha-ly-thuong-kiet', '15,000 - 50,000', 5, '07:00 - 23:00', '56 Lý Thường Kiệt, Quận Hoàn Kiếm, Hà Nội', 1, 0, '2020-02-12__foody-upload-api-foody-mobile-2-190904104303.jpg', 1, 37, 1, 15, 2, 1, 2, 'Trà Sữa Gong Cha - 貢茶 - Lý Thường Kiệt', NULL, '2020-02-07 07:59:01', '2020-03-19 08:39:02', NULL, 1, 37, 6, 7, 8, 8, 8),
+(5, 'Chill Tea - Thống Nhất', 'chill-tea-thong-nhat', '15,000 - 30,000', 5, '07:00 - 22:00', '63 Thống Nhất, P. Bình Thọ, Thủ Đức, TP. HCM', 1, 0, '2020-02-12__foody-upload-api-foody-mobile-1-jpg-181008163221.jpg', 1, 0, 1, 15, 1, 1, 2, 'Chill Tea - Thống Nhất', NULL, '2020-02-07 08:00:08', '2020-02-14 03:44:42', NULL, 0, 0, 0, 0, 0, 0, 0),
+(6, 'Mì Nhật Hana Maru - Nguyễn Ngọc Phương', 'mi-nhat-hana-maru-nguyen-ngoc-phuong', '15,000 - 50,000', 0, '07:00 - 2:00', '8C Nguyễn Ngọc Phương, P. 19, Bình Thạnh, TP. HCM', 1, 0, '2020-02-12__2.jpg', 1, 50, 1, 7, 1, 8, 1, 'Mì Nhật Hana Maru - Nguyễn Ngọc Phương', NULL, '2020-02-07 08:01:01', '2020-02-22 00:32:00', NULL, 7, 287, 56, 58, 59, 56, 58),
+(7, 'Chilli Thai - Ăn Vặt - Mạc Thị Bưởi', 'chilli-thai-an-vat-mac-thi-buoi', '15,000 - 50,000', 0, '07:00 - 23:00', '38 Mạc Thị Bưởi, P. Bến Nghé, Quận 1, TP. HCM', 1, 0, '2020-02-12__foody-upload-api-foody-mobile-13-191011143837.jpg', 0, 0, 1, 4, 1, 6, 1, 'Chilli Thai - Ăn Vặt - Mạc Thị Bưởi', NULL, '2020-02-07 08:01:58', '2020-02-21 18:16:12', NULL, 2, 72, 17, 17, 11, 14, 13),
+(8, 'Trung Tâm Triển Lãm & Hội Nghị Sài Gòn (SECC) - Nguyễn Văn Linh', 'trung-tam-trien-lam-hoi-nghi-sai-gon-secc-nguyen-van-linh', '150,000 - 500,000', 0, '07:00 - 23:00', '799 Nguyễn Văn Linh, P. Tân Phú,  Quận 7, TP. HCM', 1, 0, '2020-02-12__foody-upload-api-foody-mobile-4-190611092143.jpg', 0, 50, 2, 13, 3, 1, 1, 'Trung Tâm Triển Lãm & Hội Nghị Sài Gòn (SECC) - Nguyễn Văn Linh', NULL, '2020-02-07 08:03:51', '2020-02-22 00:26:28', NULL, 2, 99, 19, 20, 20, 20, 20),
+(10, 'Pizza Mập - Pizza Online', 'pizza-map-pizza-online', '70,000 - 130,000', 0, '07:00 - 23:00', '50/514 Thụy Khuê, Quận Tây Hồ, Hà Nội', 1, 0, '2020-02-12__foody-upload-api-foody-mobile-2-jpg-180413111409.jpg', 1, 0, 1, NULL, 2, NULL, 1, 'Pizza Mập - Pizza Online', 'dddd', '2020-02-07 08:43:34', '2020-02-15 01:18:11', 383600764, 0, 0, 0, 0, 0, 0, 0),
+(11, 'Xích Beer - Nguyên Hồng', 'xich-beer-nguyen-hong', '100.000 - 200.000', 0, '10:00 - 23:59', '68 Nguyên Hồng,  Quận Đống Đa, Hà Nội', 1, 0, '2020-02-15__foody-upload-api-foody-mobile-2-190218112736.jpg', 0, 0, 1, 13, 2, 1, 3, 'Xích Beer - Nguyên Hồng', NULL, '2020-02-07 08:44:45', '2020-02-23 09:21:43', NULL, 1, 0, 0, 0, 0, 0, 0),
+(13, 'ABC', 'abc', '15000 - 25000', 0, '7:00 - 23:00', '1782  Francis Mine', 1, 0, '2020-02-15__toi2.png', 1, 0, 2, NULL, 2, NULL, 4, 'ABC', NULL, '2020-02-11 22:18:16', '2020-02-14 22:40:19', 966786567, 0, 0, 0, 0, 0, 0, 0),
+(14, 'Cơm sườn', 'com-suon', '15000 - 25000', 0, '7:00 - 23:00', '1782 Francis Min', 1, 0, '2020-02-15__foody-upload-api-foody-mobile-avar1-jpg-181126093556.jpg', 1, 0, 1, NULL, 1, NULL, 1, 'Cơm sườn', NULL, '2020-02-13 10:52:15', '2020-02-23 09:24:08', 530280303, 1, 0, 0, 0, 0, 0, 0),
+(15, 'Monaco Coffee - Nam Trân', 'monaco-coffee-nam-tran', '10,000 - 40,000', 0, '06:00 - 22:00', '33 Nam Trân, Quận Liên Chiểu, Đà Nẵng', 1, 0, '2020-02-15__anh1iunauan-1335.jpg', 1, 0, 1, NULL, 3, NULL, 1, 'Monaco Coffee - Nam Trân', NULL, '2020-02-14 22:53:25', '2020-02-14 22:53:25', NULL, 0, 0, 0, 0, 0, 0, 0),
+(16, 'Tiệm Trà Chanh Mr.Win', 'tiem-tra-chanh-mrwin', '12,000 - 22,000', 4, '10:00 - 22:00', '91 Kinh Dương Vương, Quận Liên Chiểu, Đà Nẵng', 1, 0, '2020-02-15__baa1773-9475.jpg', 1, 0, 1, NULL, 6, NULL, 1, 'Tiệm Trà Chanh Mr.Win', NULL, '2020-02-14 22:54:20', '2020-02-14 22:54:20', NULL, 0, 0, 0, 0, 0, 0, 0),
+(17, 'Ăn Vặt Bà Tám', 'an-vat-ba-tam', '30,000 - 150,000', 1, '07:00 - 23:00', '182 Nguyễn Như Hạnh, Quận Liên Chiểu, Đà Nẵng', 1, 0, '2020-02-15__baa1778-9505.jpg', 1, 16, 1, NULL, 9, NULL, 1, 'Ăn Vặt Bà Tám', NULL, '2020-02-14 22:55:13', '2020-02-23 09:44:45', NULL, 1, 16, 3, 3, 3, 3, 4),
+(18, 'Me Trang Coffee - Hà Huy Tập', 'me-trang-coffee-ha-huy-tap', '10,000 - 35,000', 0, '06:00 - 22:00', '208 Hà Huy Tập, Quận Thanh Khê, Đà Nẵng', 1, 0, '2020-02-15__e-1725.jpg', 1, 0, 1, NULL, 2, NULL, 1, 'Me Trang Coffee - Hà Huy Tập', NULL, '2020-02-14 22:56:00', '2020-02-14 22:56:00', NULL, 0, 0, 0, 0, 0, 0, 0),
+(19, 'Kup Tea - Đại Hải', 'kup-tea-dai-hai', '15000 - 50000', 7, '7:00 - 23:00', 'Đại hải, kế sách, sóc trăng', 1, 0, '2020-02-15__foody-d80ea0077fb6ddb5667182cf637aae94e733a3cf554264152cpimgpsh-fullsize-distr-636325406945647961.jpg', 0, 0, 1, NULL, 43, NULL, 2, 'Kup Tea - Đại Hải', NULL, '2020-02-15 06:16:16', '2020-02-23 09:37:58', NULL, 3, 43, 8, 8, 9, 9, 9),
+(20, 'Xích ma', 'xich-ma', '15000 - 25000', 0, '10:00 - 23:59', '3544 Reynolds Alley', 1, 0, '2020-02-15__foody-mobile-2-jpg-643-636184452867311732.jpg', 0, 0, 1, NULL, 15, NULL, 2, 'Xích ma', NULL, '2020-02-15 06:16:50', '2020-02-15 06:16:50', NULL, 0, 0, 0, 0, 0, 0, 0),
+(21, 'ABCDDD', 'abcddd', '100.000 - 200.000', 0, '7:00 - 23:00', '1782  Francis Mine', 1, 0, '2020-02-15__foody-mobile-ankhuyasg-jpg.jpg', 0, 0, 1, NULL, 20, NULL, 2, 'ABCDDD', NULL, '2020-02-15 06:18:01', '2020-02-15 06:18:01', NULL, 0, 0, 0, 0, 0, 0, 0),
+(22, 'Đồ Long', 'do-long', '15000 - 25000', 0, '7:00 - 23:00', 'Ấp đông hải, xã đại hải, huyện kế sách, tỉnh sóc trăng', 1, 0, '2020-02-16__foody-upload-api-foody-mobile-chi-beo-jpg-181106110614.jpg', 1, 0, 1, NULL, 43, 1, 1, 'Đồ Long', NULL, '2020-02-15 19:46:08', '2020-02-21 18:20:44', NULL, 1, 50, 10, 10, 10, 10, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `tr_user_id` int(11) NOT NULL DEFAULT 0,
+  `tr_total` int(11) NOT NULL DEFAULT 0,
+  `tr_note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tr_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tr_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tr_status` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `tr_user_id`, `tr_total`, `tr_note`, `tr_address`, `tr_phone`, `tr_status`, `created_at`, `updated_at`) VALUES
+(1, 1, 43500, 'Gửi sớm cho mình nhé!', 'số 44, mậu thân, cần thơ', '5302803031', 1, '2020-02-19 20:38:35', '2020-02-19 20:38:35'),
+(2, 1, 15000, 'change price new', '1782  Francis Mine', '5302803031', 0, '2020-02-19 20:49:13', '2020-02-19 20:49:13');
 
 -- --------------------------------------------------------
 
@@ -382,6 +498,18 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `avatar`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'MinhMinh', 'pepegvc100@gmail.com', '$2y$10$XVSPu0IanXSoplOWYXas..ZZOr0mutv5/mWH/0NFsSxAKwd3vMqHq', '5302803031', NULL, 1, 'jjRKBbq6EpcD1YS9o1JKBwUCaNRFCJxjK2P2ZfeHD0iTP5JKzWlMem4TJZfR', NULL, NULL),
+(2, 'Minhphuc', 'pepegvc10@gmail.com', '$2y$10$bIi0H3b5lVqYkxjmvz38suNmDSYEIXJSAKSCOT4Jb/hv7OUDEa8N2', '0977675456', NULL, 1, 'qYPDdmolMx06xuRUU71jH08w2UxJmhPXXXZPmD9cs0x9xpCwHQY9gV21g69q', NULL, NULL),
+(3, 'Minhtoan', 'pepegvc1@gmail.com', '$2y$10$4u3A9ioduaYVdIVvTV.MtOYxL5sLhYvWP.lz3o/fZLJUms75OGE/a', '5302803', NULL, 1, NULL, NULL, NULL),
+(4, 'MinhMinh', 'minhphuc4k@gmail.com', '$2y$10$fVjVFCABq9RtVobcitW2JOhqdiIJN/cgo5hBlx3TZ0bnyfd.5/pjK', '5302803031', NULL, 1, NULL, '2020-02-19 03:43:26', '2020-02-19 03:43:26'),
+(5, 'MinhMinh', 'pepegvc111@gmail.com', '$2y$10$QCCpV8BO2Vo1FoVPNhCANONJ3Ljh/PqOvKm/1xoWK8qAnJJ/B9R5S', '0966197305', NULL, 1, 'ZTZOH0HqKriQUmOXWn6GkGJV4hiCMPMRwaBr46GOAixzngsI0O7KP2qBAmxf', '2020-02-19 05:58:12', '2020-02-19 05:58:12'),
+(6, 'Minh Phúc', 'phutai@gmail.com', '$2y$10$zApMXzadyyKNfhdTKC6tle5EvXJjJn0up6fKh2j22AjQF4BGhe8Xe', '0966197306', NULL, 1, 'osEZeHIggwjGAtia5BVLdZazTPVYxgdxtzQS3aeLEptIrMMGEb47gJ2E0SCN', '2020-02-21 18:14:25', '2020-02-21 18:14:25');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -409,6 +537,14 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_or_transaction_id_index` (`or_transaction_id`),
+  ADD KEY `orders_or_product_id_index` (`or_product_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -425,6 +561,14 @@ ALTER TABLE `products`
   ADD KEY `products_pro_count_index` (`pro_count`);
 
 --
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ratings_ra_store_id_index` (`ra_store_id`),
+  ADD KEY `ratings_ra_user_id_index` (`ra_user_id`);
+
+--
 -- Indexes for table `stores`
 --
 ALTER TABLE `stores`
@@ -436,6 +580,14 @@ ALTER TABLE `stores`
   ADD KEY `stores_st_area_id_index` (`st_area_id`),
   ADD KEY `stores_st_typecook_id_index` (`st_typeCook_id`),
   ADD KEY `stores_st_typeproduct_id_index` (`st_typeProduct_id`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `transactions_tr_user_id_index` (`tr_user_id`),
+  ADD KEY `transactions_tr_status_index` (`tr_status`);
 
 --
 -- Indexes for table `type_cooks`
@@ -489,19 +641,37 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `stores`
 --
 ALTER TABLE `stores`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `type_cooks`
@@ -525,7 +695,7 @@ ALTER TABLE `type_qualitys`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

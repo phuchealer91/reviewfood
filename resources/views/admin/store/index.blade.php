@@ -8,7 +8,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Danh sách</li>
             </ol>
         </nav>
-        </ol>
     </div>
     <div class="col-sm-12 col-md-10 px-0">
         <form action="" class="d-inline-flex">

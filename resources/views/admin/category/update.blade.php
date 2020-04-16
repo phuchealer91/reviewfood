@@ -8,7 +8,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Cập nhật</li>
             </ol>
         </nav>
-        </ol>
     </div>
     {{--    <div class="container-fluid">--}}
     <div class="row">
