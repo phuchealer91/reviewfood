@@ -24,7 +24,6 @@ class AdminStoreController extends Controller
         if(isset($request->find_typeProduct)) $stores->where('st_typeProduct_id',$request->find_typeProduct);
         if(isset($request->find_category)) $stores->where('st_category_id',$request->find_category);
 
-
         $stores = $stores->orderByDesc('id')->paginate(12);
 //        $storess = Store::with('relation_typeProduct:id,tp_name')->paginate(20);
 //        $typeStores = Store::with(['getStore' => function ($query) {

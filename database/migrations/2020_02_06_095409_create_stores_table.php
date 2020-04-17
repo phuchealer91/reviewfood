@@ -23,8 +23,8 @@ class CreateStoresTable extends Migration
             $table->string('st_timeOpen')->nullable();
             $table->string('st_address')->nullable();
             $table->tinyInteger('st_active')->default(1)->index();
-            $table->double('st_lat')->nullable()->index()->default(0);
-            $table->double('st_lng')->nullable()->index()->default(0);
+            $table->text('st_lat')->nullable()->index();
+            $table->text('st_lng')->nullable()->index();
             $table->string('st_avatar')->nullable();
             $table->tinyInteger('st_hot')->default(0);
             $table->tinyInteger('st_activeOpen')->default(0);

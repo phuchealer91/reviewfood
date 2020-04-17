@@ -99,9 +99,11 @@
 
 
 
-            <h2 class="text-center mt-10 ">Vị trí tuyến đường</h2>
-            <button id="btn-access" class="btn btn-success">Cho phép truy cập địa chỉ của bạn</button>
-            <input type="button" id="routebtn" value="Tìm vị trí tuyến đường cho bạn" class="btn btn-primary"/>
+            <div class="container text-center mt-5">
+                <h2 class="text-center ">Vị trí tuyến đường</h2>
+                <button id="btn-access" class="btn btn-success my-4">Cho phép truy cập địa chỉ của bạn</button>
+                <input type="button" id="routebtn" value="Tìm vị trí tuyến đường cho bạn" class="btn btn-primary"/>
+            </div>
             <div id="map-cavans" style="height: 600px; width: 600px; margin: 20px auto; position: relative; ">
 
             </div>
@@ -556,9 +558,6 @@
              latStore = document.getElementById('lat_1').value;
              lngStore = document.getElementById('lng_1').value;
             function initialize() {
-
-
-
                 directionsDisplay = new google.maps.DirectionsRenderer();
                 var deafultLocation = new google.maps.LatLng(lngStore, latStore);
                 var mapOptions = {
@@ -569,20 +568,23 @@
                 directionsDisplay.setMap(map);
                 google.maps.event.addDomListener(document.getElementById('routebtn'), 'click', calcRoute);
             }
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+            function showPosition(position) {
+
+                latLocal =  position.coords.latitude ;
+                lngLocal = position.coords.longitude;
+                console.log(latLocal,lngLocal );
+            }
+            google.maps.event.addDomListener(document.getElementById('btn-access'), 'click', getLocation);
 
             function calcRoute() {
-                // function getLocation() {
-                //     if (navigator.geolocation) {
-                //         navigator.geolocation.getCurrentPosition(showPosition);
-                //     } else {
-                //         x.innerHTML = "Geolocation is not supported by this browser.";
-                //     }
-                // }
-                // function showPosition(position) {
-                //
-                //     latLocal =  position.coords.latitude ;
-                //      lngLocal = position.coords.longitude;
-                // }
+
 
                 // if (navigator.geolocation) {
                 //     navigator.geolocation.getCurrentPosition(function(position) {
@@ -608,7 +610,7 @@
                 // lngStore = document.getElementById('lng_1').value;
                 var start = new google.maps.LatLng(lngStore, latStore);
                 //var end = new google.maps.LatLng(38.334818, -181.884886);
-                var end = new google.maps.LatLng(21.023319, 105.850540);
+                var end = new google.maps.LatLng(latLocal, lngLocal);
                 // var start = new google.maps.LatLng(37.334818, -121.884886);
                 // //var end = new google.maps.LatLng(38.334818, -181.884886);
                 // var end = new google.maps.LatLng(37.441883, -122.143019);
@@ -622,10 +624,11 @@
                         directionsDisplay.setDirections(response);
                         directionsDisplay.setMap(map);
                     } else {
-                        alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+                        // alert("Directions Request from " + start.toUrlValue(6) + " to " + end.toUrlValue(6) + " failed: " + status);
+                        alert('Không tìm được đường đi. Có thể bạn chưa click chọn cho phép chia sẻ vị trí của bạn.')
                     }
                 });
-                // google.maps.event.addDomListener(document.getElementById('btn-access'), 'click', getLocation);
+
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
@@ -639,8 +642,4 @@
 
     </script>
 {{--    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>--}}
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd6I-yA6xMerClSIp6X_R6n3J05O5G3bY"
-            async defer></script>
-
 @endsection

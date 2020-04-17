@@ -16,6 +16,9 @@ Route::group(['namespace'=>'Frontend'],function (){
 //    Route::get('/','typeProductController@getTypeProduct')->name('get.type.Product');
     Route::get('san-pham/{slug}-{id}', 'StoreDetailController@getDetailStore')->name('get.detail.store');
 //    Route::get('store/get_by_product_type', 'typeProductController@getStoreByTypeId')->name('get.list.store_by_id');
+    Route::get('san-pham', 'StoreDetailController@getStoreSearch')->name('get.list.store_search');
+    Route::get('san-pham/error-search', 'StoreDetailController@getStoreSearch')->name('get.error.store_search');
+
 //    Gio hang
     Route::group(['prefix'=>'shopping'],function (){
         Route::get('/add/{id}','ShoppingCartController@addProduct')->name('add.shopping.cart');

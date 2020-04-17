@@ -63,7 +63,6 @@
     width: 40px;
     cursor: pointer;
     height: 40px;
-    position: absolute;
     display: block;
     z-index: 1000;
     border-radius: 0; }
@@ -85,7 +84,6 @@
     width: 40px;
     cursor: pointer;
     height: 40px;
-    position: absolute;
     display: block;
     z-index: 1000;
     border-radius: 0; }

@@ -52,18 +52,18 @@ $(document).ready(function() {
         dots:false,
         nav:true,
         // mouseDrag:false,
-        stagePadding: 200,
+        // stagePadding: 200,
         autoplay:true,
         // animateOut: 'slideOutUp',
         responsive:{
             0:{
                 items: 1
             },
-            600:{
-                items: 1
+            800:{
+                items: 2
             },
             1000:{
-                items: 1
+                items: 2
             }
         }
     });

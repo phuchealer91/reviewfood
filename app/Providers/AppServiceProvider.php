@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Area;
+use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -16,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $areas = Area::all();
+        $categories = Category::all();
         View::share('areas',$areas);
+        View::share('categories',$categories);
     }
 
     /**
